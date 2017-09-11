@@ -1,0 +1,11 @@
+
+/* someSpace class is needed so we can position the dropdown menu all the way towards
+    the right of the toolbar.
+*/
+.someSpace{       
+    flex: 1 1 auto;
+}
+
+.eShopButton{
+    font-size: 20px;
+}
