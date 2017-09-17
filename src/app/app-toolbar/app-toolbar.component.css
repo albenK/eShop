@@ -6,6 +6,8 @@
     flex: 1 1 auto;
 }
 
-.eShopButton{
+/* appToolbarButton class is to be applied for any button within the toolbar with 
+"md-button" directive */
+.appToolbarButton{ 
     font-size: 20px;
 }

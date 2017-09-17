@@ -1,3 +1,4 @@
+import {AuthService} from "../auth.service";
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,15 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app-toolbar.component.css']
 })
 export class AppToolbarComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  constructor(public authService:AuthService) { 
   }
 
+  ngOnInit() {}
+
   logout(){
-    //TODO: implement logout.
-    alert("Need to implement log out"); //remove later!
+    this.authService.logout();
   }
 
 }
