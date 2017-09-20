@@ -1,3 +1,2 @@
-<p>
-  home works!
-</p>
+<p>Home</p>
+<h1 *ngIf="(authService.appUser$ | async) as appUser">Hello {{appUser.displayName}}</h1>

@@ -1,7 +1,7 @@
 import "rxjs/add/operator/map";
 import {Observable} from "rxjs/Observable";
 import {AuthService} from "./auth.service";
-import {Router} from "@angular/router";
+import {Router,ActivatedRouteSnapshot,RouterStateSnapshot} from "@angular/router";
 import {Injectable} from '@angular/core';
 import {CanActivate} from "@angular/router";
 
@@ -19,10 +19,10 @@ export class AuthGuardService implements CanActivate {
   class is within the "canActivate" array property of a route. 
   If this method returns true, then angular will activate that route for the user.
 */ 
-  canActivate():Observable<boolean>{ 
+  canActivate(route:ActivatedRouteSnapshot,state:RouterStateSnapshot):Observable<boolean>{ 
     return this.authService.appUser$.map((appUser:firebase.User) =>{
       if(appUser) {return true;} //if a firebase user exists, then return true.
-      this.router.navigate(["/login"]); //otherwise redirect to login and return false.
+      this.router.navigate(["/login"],{queryParams:{redirectUrl:state.url}}); //otherwise route to login with current url and return false.
       return false;
     });
   }

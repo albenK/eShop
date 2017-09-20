@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+/* fonts fpr the content of a page.*/
+.appFont{
+    font-family:"Roboto",Helvetica,sans-serif;
+}
 /* eShopButton class is to be applied to buttons with a "md-raised-button" directive */
 .eShopButton{
     font-size: 20px;

@@ -1,3 +1,2 @@
-<p>
-  admin-orders works!
-</p>
+<p>Admin Orders</p>
+<h1 *ngIf="(authService.appUser$ | async) as appUser">Hello {{appUser.displayName}}</h1>

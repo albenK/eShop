@@ -1,3 +1,2 @@
-<p>
-  admin-products works!
-</p>
+<p>Admin Products</p>
+<h1 *ngIf="(authService.appUser$ | async) as appUser">Hello {{appUser.displayName}}</h1>

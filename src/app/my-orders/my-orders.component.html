@@ -1,3 +1,2 @@
-<p>
-  my-orders works!
-</p>
+<p>My Orders</p>
+<h1 *ngIf="(authService.appUser$ | async) as appUser">Hello {{appUser.displayName}}</h1>

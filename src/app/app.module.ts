@@ -31,7 +31,7 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 const routes:Routes = [
   {path:"",component:HomeComponent},
   {path:"products",component:ProductsComponent},
-  {path:"my-orders",component:MyOrdersComponent},
+  {path:"my-orders",component:MyOrdersComponent, canActivate:[AuthGuardService]},
   {path:"shopping-cart",component:ShoppingCartComponent},
   {path:"check-out",component:CheckOutComponent, canActivate:[AuthGuardService]},
   {path:"order-success",component:OrderSuccessComponent},
