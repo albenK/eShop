@@ -1,7 +1,12 @@
 import { AngularFireAuth } from 'angularfire2/auth';
-import {Router,ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs/Observable";
+import "rxjs/add/operator/switchMap";
+import "rxjs/add/operator/map";
+import "rxjs/add/observable/of";
 import * as firebase from "firebase";
+import {AppUser} from "./models/app-user";
+import {UserService} from "./user.service";
+import {Router,ActivatedRoute} from "@angular/router";
 import { Injectable } from '@angular/core';
 /*
   ABOUT ME: The purpose of this class is so that we have one service that's injected
@@ -9,10 +14,10 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class AuthService {
-  appUser$:Observable<firebase.User>;
-  constructor(private angularFireAuth:AngularFireAuth,private router:Router,private activatedRoute:ActivatedRoute) {
-    this.appUser$ = angularFireAuth.authState;
-    
+  user$:Observable<firebase.User>;
+  constructor(private angularFireAuth:AngularFireAuth,private router:Router,private activatedRoute:ActivatedRoute
+  ,private userService:UserService) {
+    this.user$ = angularFireAuth.authState;
    }
 
   login(){
@@ -30,6 +35,13 @@ export class AuthService {
   logout(){
     this.angularFireAuth.auth.signOut().then(() =>{
       this.router.navigate(["/"]); //route user to home page after they logout.
+    });
+  }
+
+  getAppUser$():Observable<AppUser>{
+    return this.user$.switchMap((firebaseUser:firebase.User) => {
+      if (firebaseUser) return this.userService.getUserInfoFromDatabase(firebaseUser.uid);
+      return Observable.of(null); // if user isn't logged in, return observable of null.
     });
   }
 

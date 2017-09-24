@@ -10,7 +10,9 @@ import {RouterModule,Routes} from "@angular/router";
 import {AngularMaterialModule} from "./angular-material/angular-material.module";
 
 import {AuthService} from "./auth.service";
+import {UserService} from "./user.service";
 import {AuthGuardService} from "./auth-guard.service";
+import {AdminAuthGuardService} from "./admin-auth-guard.service";
 
 import { AppComponent } from './app.component';
 import { AppToolbarComponent } from './app-toolbar/app-toolbar.component';
@@ -31,13 +33,16 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 const routes:Routes = [
   {path:"",component:HomeComponent},
   {path:"products",component:ProductsComponent},
-  {path:"my-orders",component:MyOrdersComponent, canActivate:[AuthGuardService]},
   {path:"shopping-cart",component:ShoppingCartComponent},
-  {path:"check-out",component:CheckOutComponent, canActivate:[AuthGuardService]},
-  {path:"order-success",component:OrderSuccessComponent},
   {path:"login",component:LoginComponent},
-  {path:"admin/products",component:AdminProductsComponent, canActivate:[AuthGuardService]},
-  {path:"admin/orders",component:AdminOrdersComponent, canActivate:[AuthGuardService]},
+
+  {path:"my-orders",component:MyOrdersComponent, canActivate:[AuthGuardService]},
+  {path:"check-out",component:CheckOutComponent, canActivate:[AuthGuardService]},
+  {path:"order-success",component:OrderSuccessComponent,canActivate:[AuthGuardService]},
+  
+  {path:"admin/products",component:AdminProductsComponent, canActivate:[AuthGuardService,AdminAuthGuardService]},
+  {path:"admin/orders",component:AdminOrdersComponent, canActivate:[AuthGuardService,AdminAuthGuardService]},
+  
   {path:"**",redirectTo:"page-not-found"},
   {path:"page-not-found",component:PageNotFoundComponent}
 ];
@@ -67,7 +72,7 @@ const routes:Routes = [
     RouterModule.forRoot(routes)
     
   ],
-  providers: [AuthService,AuthGuardService],
+  providers: [AuthService,UserService,AuthGuardService,AdminAuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

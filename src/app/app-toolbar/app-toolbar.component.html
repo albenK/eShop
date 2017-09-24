@@ -5,8 +5,10 @@
 
   <md-menu #dropDownMenu> <!-- TODO: use ngFor to display links once routing is set up-->
     <button routerLink="/my-orders" md-menu-item>My Orders</button>
-    <button routerLink="/admin/orders" md-menu-item>Admin Orders</button>
-    <button routerLink="/admin/products" md-menu-item>Admin Products</button>
+    <ng-container *ngIf="appUser && appUser.isAdmin">
+      <button routerLink="/admin/orders" md-menu-item>Manage Orders</button>
+      <button routerLink="/admin/products" md-menu-item>Manage Products</button>
+    </ng-container>
     <button (click)="logout()" md-menu-item>Log Out</button>
   </md-menu>
 
@@ -20,7 +22,7 @@
     <i class="material-icons">shopping_cart</i>
   </button>
   
-  <div *ngIf="(authService.appUser$ | async) as appUser; else anonymousUser">{{appUser.displayName}}</div>
+  <div *ngIf="appUser; else anonymousUser">{{appUser.name}}</div>
 
   <button [mdMenuTriggerFor]="dropDownMenu" md-icon-button>
     <i class="material-icons">arrow_drop_down_circle</i>

@@ -1,6 +1,7 @@
 import "rxjs/add/operator/map";
 import {Observable} from "rxjs/Observable";
 import {AuthService} from "./auth.service";
+import {AppUser} from "./models/app-user";
 import {Router,ActivatedRouteSnapshot,RouterStateSnapshot} from "@angular/router";
 import {Injectable} from '@angular/core';
 import {CanActivate} from "@angular/router";
@@ -13,15 +14,14 @@ import {CanActivate} from "@angular/router";
 export class AuthGuardService implements CanActivate {
 
   constructor(private authService:AuthService,private router:Router) { }
-
-/*
-  canActivate() method is called automatically by angular if this
-  class is within the "canActivate" array property of a route. 
-  If this method returns true, then angular will activate that route for the user.
-*/ 
-  canActivate(route:ActivatedRouteSnapshot,state:RouterStateSnapshot):Observable<boolean>{ 
-    return this.authService.appUser$.map((appUser:firebase.User) =>{
-      if(appUser) {return true;} //if a firebase user exists, then return true.
+  /*
+    canActivate() method is called automatically by angular if this
+    class is within the "canActivate" array property of a route. 
+    If this method returns true, then angular will activate that route for the user.
+  */ 
+  canActivate(route:ActivatedRouteSnapshot,state:RouterStateSnapshot):Observable<boolean>{
+    return this.authService.user$.map((firebaseUser:firebase.User) =>{
+      if(firebaseUser) {return true;} //if an app user exists, then return true.
       this.router.navigate(["/login"],{queryParams:{redirectUrl:state.url}}); //otherwise route to login with current url and return false.
       return false;
     });
