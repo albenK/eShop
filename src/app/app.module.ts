@@ -26,9 +26,7 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { LoginComponent } from './login/login.component';
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
-
-
-
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 const routes:Routes = [
   {path:"",component:HomeComponent},
@@ -40,8 +38,21 @@ const routes:Routes = [
   {path:"check-out",component:CheckOutComponent, canActivate:[AuthGuardService]},
   {path:"order-success",component:OrderSuccessComponent,canActivate:[AuthGuardService]},
   
-  {path:"admin/products",component:AdminProductsComponent, canActivate:[AuthGuardService,AdminAuthGuardService]},
-  {path:"admin/orders",component:AdminOrdersComponent, canActivate:[AuthGuardService,AdminAuthGuardService]},
+  {
+    path:"admin/products",
+    component:AdminProductsComponent, 
+    canActivate:[AuthGuardService,AdminAuthGuardService]
+  },
+  {
+    path:"admin/products/new",
+    component:ProductFormComponent,
+    canActivate:[AuthGuardService,AdminAuthGuardService]
+  },
+  {
+    path:"admin/orders",
+    component:AdminOrdersComponent,
+    canActivate:[AuthGuardService,AdminAuthGuardService]
+  },
   
   {path:"**",redirectTo:"page-not-found"},
   {path:"page-not-found",component:PageNotFoundComponent}
@@ -60,7 +71,8 @@ const routes:Routes = [
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,

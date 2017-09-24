@@ -1,10 +1,12 @@
-import { NgModule } from '@angular/core';
-
 // import  material design modules.
 import {MdSidenavModule} from '@angular/material';
 import {MdToolbarModule} from '@angular/material';
 import {MdMenuModule} from '@angular/material';
 import {MdButtonModule} from '@angular/material';
+import {MdInputModule} from '@angular/material';
+import {MdSelectModule} from '@angular/material';
+
+import { NgModule } from '@angular/core';
 /*
     ABOUT ME: the purpose of this module is to have one module that we import into 
     app.module.ts for all of our angular material modules we use throughout this app.
@@ -14,13 +16,17 @@ import {MdButtonModule} from '@angular/material';
         MdSidenavModule,
         MdToolbarModule,
         MdButtonModule,
-        MdMenuModule
+        MdMenuModule,
+        MdInputModule,
+        MdSelectModule
     ],
     exports:[
         MdSidenavModule,
         MdToolbarModule,
         MdButtonModule,
-        MdMenuModule
+        MdMenuModule,
+        MdInputModule,
+        MdSelectModule
     ]
   })
 

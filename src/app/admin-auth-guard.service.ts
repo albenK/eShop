@@ -23,12 +23,7 @@ export class AdminAuthGuardService implements CanActivate{
   */ 
   canActivate(route:ActivatedRouteSnapshot,state:RouterStateSnapshot):Observable<boolean>{
     return this.authService.getAppUser$().map((appUser:AppUser) => {
-      //this is redundant, but we need to redirect user to home, if they're not an admin.
-      if(appUser.isAdmin){
-        return appUser.isAdmin;
-      }
-      this.router.navigate(["/"]);
-      return false;
+      return appUser.isAdmin;
     });
   }
 
