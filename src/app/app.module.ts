@@ -4,13 +4,16 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import {environment} from "../environments/environment.prod";
 
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
+import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule,Routes} from "@angular/router";
 import {AngularMaterialModule} from "./angular-material/angular-material.module";
 
 import {AuthService} from "./auth.service";
 import {UserService} from "./user.service";
+import {CategoryService} from "./category.service";
+import {ProductService} from "./product.service";
 import {AuthGuardService} from "./auth-guard.service";
 import {AdminAuthGuardService} from "./admin-auth-guard.service";
 
@@ -77,6 +80,8 @@ const routes:Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
@@ -84,7 +89,14 @@ const routes:Routes = [
     RouterModule.forRoot(routes)
     
   ],
-  providers: [AuthService,UserService,AuthGuardService,AdminAuthGuardService],
+  providers: [
+    AuthService,
+    UserService,
+    CategoryService,
+    ProductService,
+    AuthGuardService,
+    AdminAuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

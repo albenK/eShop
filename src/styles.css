@@ -6,6 +6,7 @@
     font-family:"Roboto",Helvetica,sans-serif;
     font-size:20px;
     margin-top:50px;
+    margin-left:20px;
 }
 /* eShopButton class is applied to any button with an md-raised-button directive */
 .eShopButton{

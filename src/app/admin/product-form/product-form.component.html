@@ -1,9 +1,9 @@
-<form class="productForm">
+<form [formGroup]="newProductForm" (ngSubmit)="addNewProduct($event)" class="productForm">
   <table class="formSection">
     <tr>
       <td>
         <md-form-field color="warn" class="formSection">
-          <input type="text" mdInput placeholder="Title">
+          <input formControlName="title" type="text" name="title" mdInput placeholder="Title"/>
         </md-form-field>
       </td>
     </tr>
@@ -11,18 +11,32 @@
     <tr>
       <td>
         <md-form-field color="warn" class="formSection">
-          <input type="number" mdInput placeholder="Price">
+          <input formControlName="price" type="number" name="price" mdInput placeholder="Price ($)"/>
         </md-form-field>
       </td>
     </tr>
 
     <tr>
       <td>
-        <md-select placeholder="Category" class="formSection">
-          <md-option>test1</md-option>
-          <md-option>test 2</md-option>
-          <md-option>test 3</md-option>
+        <md-select formControlName="category" name="category" color="warn" placeholder="Category" class="formSection">
+          <md-option *ngFor="let eachCategory of allCategories" [value]="eachCategory.$key">
+            {{eachCategory.name}}
+          </md-option>
         </md-select>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <md-form-field color="warn" class="formSection">
+          <input formControlName="imageUrl" type="text" name="imageUrl" mdInput placeholder="Image URL"/>
+        </md-form-field>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <button [disabled]="!newProductForm.valid" md-button color="warn" class="eShopButton">Create Product</button>
       </td>
     </tr>
   </table>

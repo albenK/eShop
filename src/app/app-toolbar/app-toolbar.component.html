@@ -1,8 +1,8 @@
 <md-toolbar color="warn">
   <button routerLink="/" md-button class="appToolbarButton">eShop</button>
-
+  
   <span class="someSpace"></span>
-
+  
   <md-menu #dropDownMenu> <!-- TODO: use ngFor to display links once routing is set up-->
     <button routerLink="/my-orders" md-menu-item>My Orders</button>
     <ng-container *ngIf="appUser && appUser.isAdmin">
@@ -13,9 +13,7 @@
   </md-menu>
 
   <ng-template #anonymousUser>
-    <button routerLink="/login" md-button class="appToolbarButton">
-      Login
-    </button>
+    <button routerLink="/login" md-button class="appToolbarButton">Login</button>
   </ng-template>
   
   <button routerLink="/shopping-cart" md-icon-button>
