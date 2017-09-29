@@ -3,7 +3,7 @@
     <tr>
       <td>
         <md-form-field color="warn" class="formSection">
-          <input formControlName="title" type="text" name="title" mdInput placeholder="Title"/>
+          <input formControlName="title" type="text" mdInput placeholder="Title"/>
         </md-form-field>
       </td>
     </tr>
@@ -11,14 +11,14 @@
     <tr>
       <td>
         <md-form-field color="warn" class="formSection">
-          <input formControlName="price" type="number" name="price" mdInput placeholder="Price ($)"/>
+          <input formControlName="price" type="number" mdInput placeholder="Price ($)"/>
         </md-form-field>
       </td>
     </tr>
 
     <tr>
       <td>
-        <md-select formControlName="category" name="category" color="warn" placeholder="Category" class="formSection">
+        <md-select formControlName="category" color="warn" placeholder="Category" class="formSection">
           <md-option *ngFor="let eachCategory of allCategories" [value]="eachCategory.$key">
             {{eachCategory.name}}
           </md-option>
@@ -29,7 +29,7 @@
     <tr>
       <td>
         <md-form-field color="warn" class="formSection">
-          <input formControlName="imageUrl" type="text" name="imageUrl" mdInput placeholder="Image URL"/>
+          <input formControlName="imageUrl" type="text" mdInput placeholder="Image URL"/>
         </md-form-field>
       </td>
     </tr>
