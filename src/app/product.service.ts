@@ -1,3 +1,5 @@
+import {NewProduct} from "./models/new-product";
+import * as firebase from "firebase";
 import {AngularFireDatabase} from "angularfire2/database";
 import { Injectable } from '@angular/core';
 
@@ -8,8 +10,8 @@ export class ProductService {
     this.productsCollection = "/Products";
    }
 
-  addNewProductToDatabase(){
-    //this.angularFireDatabase.list(this.productsCollection);
+  addNewProductToDatabase(product:NewProduct):firebase.Promise<void> {
+    return this.angularFireDatabase.list(this.productsCollection+"/").push(product);
 
   }
 

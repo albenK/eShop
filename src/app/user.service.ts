@@ -11,16 +11,16 @@ import { Injectable } from '@angular/core';
 export class UserService {
   private userCollection:string; //represents path to user collection in db.
   constructor(private angularFireDatabase:AngularFireDatabase) {
-    this.userCollection = "/Users/";
+    this.userCollection = "/Users";
    }
 
   updateUserInfoInDatabase(user:firebase.User){
     let userInfo:Object = {name:user.displayName,email:user.email};
-    this.angularFireDatabase.object(this.userCollection+user.uid).update(userInfo);
+    this.angularFireDatabase.object(this.userCollection+"/"+user.uid).update(userInfo);
   }
 
   getUserInfoFromDatabase(userId:string):FirebaseObjectObservable<AppUser>{
-    return this.angularFireDatabase.object(this.userCollection+userId);
+    return this.angularFireDatabase.object(this.userCollection+"/"+userId);
   }
 
 

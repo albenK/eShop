@@ -4,7 +4,7 @@
   <span class="someSpace"></span>
   
   <md-menu #dropDownMenu> <!-- TODO: use ngFor to display links once routing is set up-->
-    <button routerLink="/my-orders" md-menu-item>My Orders</button>
+    <button routerLink="/my/orders" md-menu-item>My Orders</button>
     <ng-container *ngIf="appUser && appUser.isAdmin">
       <button routerLink="/admin/orders" md-menu-item>Manage Orders</button>
       <button routerLink="/admin/products" md-menu-item>Manage Products</button>

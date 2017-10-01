@@ -5,6 +5,7 @@ import {MdMenuModule} from '@angular/material';
 import {MdButtonModule} from '@angular/material';
 import {MdInputModule} from '@angular/material';
 import {MdSelectModule} from '@angular/material';
+import {MdCardModule} from '@angular/material';
 
 import { NgModule } from '@angular/core';
 /*
@@ -18,7 +19,8 @@ import { NgModule } from '@angular/core';
         MdButtonModule,
         MdMenuModule,
         MdInputModule,
-        MdSelectModule
+        MdSelectModule,
+        MdCardModule
     ],
     exports:[
         MdSidenavModule,
@@ -26,7 +28,8 @@ import { NgModule } from '@angular/core';
         MdButtonModule,
         MdMenuModule,
         MdInputModule,
-        MdSelectModule
+        MdSelectModule,
+        MdCardModule
     ]
   })
 

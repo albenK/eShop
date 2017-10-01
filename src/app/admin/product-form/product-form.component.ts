@@ -1,9 +1,15 @@
-import {CategoryService} from "../../category.service";
-import {ProductService} from "../../product.service";
 import {Observable} from "rxjs/Observable";
 import {Subscription} from "rxjs/Subscription";
-import {FormBuilder,FormGroup,Validators} from "@angular/forms";
-import { Component, OnInit, OnDestroy} from '@angular/core';
+import {CategoryService} from "../../category.service";
+import {ProductService} from "../../product.service";
+import {NewProduct} from "../../models/new-product";
+import {NgForm} from "@angular/forms";
+import { Component, OnInit, OnDestroy,ViewChild} from '@angular/core';
+/* 
+  ABOUT ME: The purpose of this component is to give an Admin the ability to add a new product
+  to the database. We're using Angular's template driven Forms for the product form and
+  a third party package called "ng2-validation" for validating. Validation logic is within html.
+*/
 
 @Component({
   selector: 'product-form',
@@ -12,17 +18,9 @@ import { Component, OnInit, OnDestroy} from '@angular/core';
 })
 export class ProductFormComponent implements OnInit, OnDestroy {
   private categoriesSubscription:Subscription;
-  allCategories:any[];
-  public newProductForm:FormGroup;
-  private formControlsConfig:Object = {
-    title:["",Validators.required],
-    price:[1,Validators.required],
-    category:["",Validators.required],
-    imageUrl:["",Validators.required]
-  };
-  constructor(private formBuilder:FormBuilder,
-  private categoryService:CategoryService,private productService:ProductService) {
-    this.newProductForm = formBuilder.group(this.formControlsConfig);
+  public allCategories:any[];
+  @ViewChild("addProductForm") private addProductForm:NgForm; //refers to reference variable in html
+  constructor(private categoryService:CategoryService,private productService:ProductService) {
   }
 
   ngOnInit() {
@@ -36,9 +34,17 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     this.categoriesSubscription.unsubscribe();
   }
 
-  addNewProduct(event){
-    alert("Need to keep working on this!");
-    //this.productService.addNewProductToDatabase();
+  addNewProduct(event,product:NewProduct){
+    event.preventDefault();
+    this.productService.addNewProductToDatabase(product).then((returnData) => {
+      if(returnData) {
+        alert("Successfully added!"); // TODO: add small Dialog here!
+        this.resetAddProductForm();
+      }
+    });
   }
 
+  resetAddProductForm(){
+    this.addProductForm.resetForm();
+  }
 }

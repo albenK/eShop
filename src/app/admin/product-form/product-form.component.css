@@ -1,18 +1,7 @@
-/* productForm class is to be applied to the form.*/
-.productForm {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+/* errorMessage class is applied to any div element for form validation errors*/
+.errorMessage{
+  color:#ff0000;
+  font-size: 16px;
 }
-/* formSection class is to be applied to each input of the form.*/
-.formSection{
-  width: 100%;
-}
-/*This bit of css is automaticslly applied to the md-select */
-:host /deep/ .mat-select-trigger {
-  font-size: 20px;
-}
-/*This bit of css is automaticslly applied to the md-select */
-:host /deep/ .mat-select-value-text {
-    font-size: 20px;
-}
+
+

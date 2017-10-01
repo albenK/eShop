@@ -12,3 +12,25 @@
 .eShopButton{
     font-size: 20px;
 }
+/* mat-card class is applied automatically to all md-card throughout app*/
+.mat-card{
+    max-width:500px;
+}
+/* mat-card-content class is applied automatically to all md-card-content throughout app*/
+.mat-card-content{
+    font-size:20px;
+}
+/* mat-select class is applied automatically to all md-select throughout app*/
+.mat-select{
+    width:100%;
+}
+.mat-select-trigger{
+    font-size: 20px;
+}
+.mat-select-value-text{
+    font-size: 20px;
+}
+/* mat-form-field is applied automatically to all md-form-field throughout app*/
+.mat-form-field{
+     width:100%;
+}

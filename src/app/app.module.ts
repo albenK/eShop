@@ -2,10 +2,11 @@ import{AngularFireModule} from "angularfire2";
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import {environment} from "../environments/environment.prod";
+import {CustomFormsModule} from "ng2-validation";
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule} from '@angular/core';
-import {FormsModule,ReactiveFormsModule} from "@angular/forms";
+import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule,Routes} from "@angular/router";
 import {AngularMaterialModule} from "./angular-material/angular-material.module";
@@ -37,7 +38,7 @@ const routes:Routes = [
   {path:"shopping-cart",component:ShoppingCartComponent},
   {path:"login",component:LoginComponent},
 
-  {path:"my-orders",component:MyOrdersComponent, canActivate:[AuthGuardService]},
+  {path:"my/orders",component:MyOrdersComponent, canActivate:[AuthGuardService]},
   {path:"check-out",component:CheckOutComponent, canActivate:[AuthGuardService]},
   {path:"order-success",component:OrderSuccessComponent,canActivate:[AuthGuardService]},
   
@@ -80,14 +81,13 @@ const routes:Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
     FormsModule,
+    CustomFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularMaterialModule,
     RouterModule.forRoot(routes)
-    
   ],
   providers: [
     AuthService,
