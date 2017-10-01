@@ -1,5 +1,5 @@
 <div>
-  <div class="formAndPreview">
+  <div class="groupItems">
     <md-card>
       <md-card-header>Add New Product</md-card-header>
       
@@ -48,9 +48,9 @@
     </md-card>
   </div>
   
-  <div class="secondaryModals">
+  <div class="groupItems">
     <md-card>
-      <img *ngIf="imageUrl.value" [src]="imageUrl.value" md-card-image>
+      <img [src]="imageUrl.value" md-card-image>
 
       <md-card-content>
         <h4>{{title.value}}</h4>
