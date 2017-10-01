@@ -1,46 +1,61 @@
-<md-card>
-  <md-card-header>Add New Product</md-card-header>
+<div>
+  <div class="formAndPreview">
+    <md-card>
+      <md-card-header>Add New Product</md-card-header>
+      
+      <md-card-content>
+        <form #addProductForm="ngForm" (ngSubmit)="addNewProduct($event,addProductForm.value)">
+          <md-form-field color="warn">
+            <input #title="ngModel" ngModel name="title" type="text" mdInput required placeholder="Title"/>
+          </md-form-field>
+    
+          <div *ngIf="title.touched && title.invalid" class="errorMessage">Title is required!<br><br></div>
+          
+          <md-form-field color="warn">
+            <input #price="ngModel" ngModel name="price" type="number" mdInput required placeholder="Price ($)" [min]="0"/>
+          </md-form-field>
+          
+          <div *ngIf="price.touched && price.invalid" class="errorMessage">
+            <div *ngIf="price.errors.required">Price is required!</div>
+            <div *ngIf="price.errors.min">Price should be 0 or higher!</div>
+            <br><br>
+          </div>
+    
+          <md-select #category="ngModel" ngModel name="category" color="warn" required placeholder="Category">
+            <md-option *ngFor="let eachCategory of allCategories" [value]="eachCategory.$key">
+              {{eachCategory.name}}
+            </md-option>
+          </md-select>
+          <br><br>
+    
+          <div *ngIf="category.touched && category.invalid" class="errorMessage">Category is required!<br><br></div>
+          
+          <md-form-field color="warn">
+            <input #imageUrl="ngModel" ngModel name="imageUrl" type="text" mdInput required placeholder="Image URL" url/>
+          </md-form-field>
+          
+          <div *ngIf="imageUrl.touched && imageUrl.invalid" class="errorMessage">
+            <div *ngIf="imageUrl.errors.required">Image URL is required!</div>
+            <div *ngIf="imageUrl.errors.url">Please enter a valid URL</div>
+            <br><br>
+          </div>
+    
+          <md-card-actions>
+            <button [disabled]="!addProductForm.valid" md-button color="warn" class="eShopButton">Add Product</button>
+          </md-card-actions>
+        </form>
+      </md-card-content>
+    </md-card>
+  </div>
   
-  <md-card-content>
-    <form #addProductForm="ngForm" (ngSubmit)="addNewProduct($event,addProductForm.value)">
-      <md-form-field color="warn">
-        <input #title="ngModel" ngModel name="title" type="text" mdInput required placeholder="Title"/>
-      </md-form-field>
+  <div class="secondaryModals">
+    <md-card>
+      <img *ngIf="imageUrl.value" [src]="imageUrl.value" md-card-image>
 
-      <div *ngIf="title.touched && title.invalid" class="errorMessage">Title is required!<br><br></div>
-      
-      <md-form-field color="warn">
-        <input #price="ngModel" ngModel name="price" type="number" mdInput required placeholder="Price ($)" [min]="0"/>
-      </md-form-field>
-      
-      <div *ngIf="price.touched && price.invalid" class="errorMessage">
-        <div *ngIf="price.errors.required">Price is required!</div>
-        <div *ngIf="price.errors.min">Price should be 0 or higher!</div>
-        <br><br>
-      </div>
-
-      <md-select #category="ngModel" ngModel name="category" color="warn" required placeholder="Category">
-        <md-option *ngFor="let eachCategory of allCategories" [value]="eachCategory.$key">
-          {{eachCategory.name}}
-        </md-option>
-      </md-select>
-      <br><br>
-
-      <div *ngIf="category.touched && category.invalid" class="errorMessage">Category is required!<br><br></div>
-      
-      <md-form-field color="warn">
-        <input #imageUrl="ngModel" ngModel name="imageUrl" type="text" mdInput required placeholder="Image URL" url/>
-      </md-form-field>
-      
-      <div *ngIf="imageUrl.touched && imageUrl.invalid" class="errorMessage">
-        <div *ngIf="imageUrl.errors.required">Image URL is required!</div>
-        <div *ngIf="imageUrl.errors.url">Please enter a valid URL</div>
-        <br><br>
-      </div>
-
-      <md-card-actions>
-        <button [disabled]="!addProductForm.valid" md-button color="warn" class="eShopButton">Add Product</button>
-      </md-card-actions>
-    </form>
-  </md-card-content>
-</md-card>
+      <md-card-content>
+        <h4>{{title.value}}</h4>
+        <p *ngIf="price.value || price.value === 0">{{price.value | currency:'USD':true}}</p>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>
