@@ -9,7 +9,7 @@ export class CategoryService {
     this.categoryCollection = "/Categories/";
    }
 
-  getCategoriesFromDatabase():FirebaseListObservable<any[]> {
+  getAllCategoriesFromDatabase():FirebaseListObservable<any[]> {
     return this.angularFireDatabase.list(this.categoryCollection,{
       query:{ // this is just to sort the names alphabetically.
         orderByChild:"name"

@@ -73,10 +73,10 @@ const routes:Routes = [
     OrderSuccessComponent,
     MyOrdersComponent,
     AdminProductsComponent,
+    ProductFormComponent,
     AdminOrdersComponent,
     LoginComponent,
-    PageNotFoundComponent,
-    ProductFormComponent
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,21 @@
+.tableWrapper {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+}
+
+.tableFilter {
+    min-height: 64px;
+    display: flex;
+    align-items: baseline;
+    padding: 8px 24px 0;
+    font-size: 20px;
+    justify-content: space-between;
+}
+
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
+    max-width:500px;
+}
+

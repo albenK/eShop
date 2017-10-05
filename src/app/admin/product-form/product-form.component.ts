@@ -2,13 +2,14 @@ import {Observable} from "rxjs/Observable";
 import {Subscription} from "rxjs/Subscription";
 import {CategoryService} from "../../category.service";
 import {ProductService} from "../../product.service";
-import {NewProduct} from "../../models/new-product";
+import {Product} from "../../models/product";
 import {NgForm} from "@angular/forms";
 import { Component, OnInit, OnDestroy,ViewChild} from '@angular/core';
 /* 
   ABOUT ME: The purpose of this component is to give an Admin the ability to add a new product
   to the database. We're using Angular's template driven Forms for the product form and
-  a third party package called "ng2-validation" for validating. Validation logic is within html.
+  a third party package called "ng2-validation" for validating. Validation logic is within the
+  html file.
 */
 
 @Component({
@@ -24,7 +25,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.categoriesSubscription = this.categoryService.getCategoriesFromDatabase()
+    this.categoriesSubscription = this.categoryService.getAllCategoriesFromDatabase()
     .subscribe((categories:any[]) => {
       this.allCategories = categories;
     });
@@ -34,7 +35,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     this.categoriesSubscription.unsubscribe();
   }
 
-  addNewProduct(event,product:NewProduct){
+  addNewProduct(event,product:Product){
     event.preventDefault();
     this.productService.addNewProductToDatabase(product).then((returnData) => {
       if(returnData) {
@@ -44,7 +45,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  resetAddProductForm(){
+  resetAddProductForm(){ //resets all form controls!
     this.addProductForm.resetForm();
   }
 }

@@ -1,11 +1,11 @@
 // import  material design modules.
-import {MdSidenavModule} from '@angular/material';
 import {MdToolbarModule} from '@angular/material';
 import {MdMenuModule} from '@angular/material';
 import {MdButtonModule} from '@angular/material';
 import {MdInputModule} from '@angular/material';
 import {MdSelectModule} from '@angular/material';
 import {MdCardModule} from '@angular/material';
+import {MdTableModule} from '@angular/material';
 
 import { NgModule } from '@angular/core';
 /*
@@ -14,22 +14,22 @@ import { NgModule } from '@angular/core';
 */
 @NgModule({
     imports: [
-        MdSidenavModule,
         MdToolbarModule,
         MdButtonModule,
         MdMenuModule,
         MdInputModule,
         MdSelectModule,
-        MdCardModule
+        MdCardModule,
+        MdTableModule
     ],
     exports:[
-        MdSidenavModule,
         MdToolbarModule,
         MdButtonModule,
         MdMenuModule,
         MdInputModule,
         MdSelectModule,
-        MdCardModule
+        MdCardModule,
+        MdTableModule
     ]
   })
 

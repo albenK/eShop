@@ -1,1 +1,31 @@
-<a routerLink="/admin/products/new" md-button color="warn" class="eShopButton">New Product</a>
+<p>
+    <a routerLink="/admin/products/new" md-button color="warn" class="eShopButton">New Product</a>
+</p>
+
+<div class="tableWrapper mat-elevation-z8">
+    <div class="tableFilter">
+        <md-form-field color="warn">
+            <input #userSearch mdInput placeholder=" Filter Products"/>
+        </md-form-field>
+    </div>
+
+    <md-table [dataSource]="mdTableDataSource">
+        
+        <ng-container mdColumnDef="title">
+            <md-header-cell *mdHeaderCellDef>Title</md-header-cell>
+            <md-cell *mdCellDef="let row"> {{row.title}} </md-cell>
+        </ng-container>
+
+        <ng-container mdColumnDef="price">
+            <md-header-cell *mdHeaderCellDef>Price</md-header-cell>
+            <md-cell *mdCellDef="let row">${{row.price}}</md-cell>
+        </ng-container>
+        
+        <md-header-row *mdHeaderRowDef="mdTableDisplayedColumns"></md-header-row>
+        <md-row *mdRowDef="let row; columns: mdTableDisplayedColumns;"></md-row>
+    </md-table>
+
+
+</div>
+
+
