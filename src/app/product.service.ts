@@ -1,6 +1,6 @@
 import {Product} from "./models/product";
 import * as firebase from "firebase";
-import {AngularFireDatabase,FirebaseListObservable} from "angularfire2/database";
+import {AngularFireDatabase,FirebaseListObservable,FirebaseObjectObservable} from "angularfire2/database";
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -16,6 +16,14 @@ export class ProductService {
 
   getAllProductsFromDatabase():FirebaseListObservable<Product[]> {
     return this.angularFireDatabase.list(this.productsCollection);
+  }
+
+  getProductByIdFromDatabase(productId:string):FirebaseObjectObservable<Product> {
+    return this.angularFireDatabase.object(this.productsCollection+"/"+productId);
+  }
+
+  updateProductInDatabase(productId:string,product:Product):firebase.Promise<void> {
+    return this.angularFireDatabase.object(this.productsCollection+"/"+productId).update(product);
   }
 
 

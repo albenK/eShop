@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     min-width: 200px;
+    max-width: 600px;
 }
 
 .tableFilter {
@@ -16,6 +17,18 @@
 .mat-table {
     overflow: auto;
     max-height: 500px;
-    max-width:500px;
+    max-width:100%;
+}
+
+.mat-header-cell{
+    font-size: 20px;
+}
+
+.mat-cell{
+    font-size: 20px;
+}
+
+a.mat-button{
+    font-size: 20px;
 }
 

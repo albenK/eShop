@@ -20,6 +20,13 @@
             <md-header-cell *mdHeaderCellDef>Price</md-header-cell>
             <md-cell *mdCellDef="let row">${{row.price}}</md-cell>
         </ng-container>
+
+        <ng-container mdColumnDef="edit">
+            <md-header-cell *mdHeaderCellDef></md-header-cell>
+            <md-cell *mdCellDef="let row">
+                <a [routerLink]="['/admin/products/',row.$key]" md-button color="warn">Edit</a>
+            </md-cell>
+        </ng-container>
         
         <md-header-row *mdHeaderRowDef="mdTableDisplayedColumns"></md-header-row>
         <md-row *mdRowDef="let row; columns: mdTableDisplayedColumns;"></md-row>

@@ -20,8 +20,7 @@ import { Component, ViewChild,ElementRef,OnInit,OnDestroy } from '@angular/core'
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
   private userSearchObservable:Subscription;
-  public allProducts:Product[];
-  mdTableDisplayedColumns:string[] = ["title","price"]; //for md-table
+  mdTableDisplayedColumns:string[] = ["title","price","edit"]; //for md-table
   mdTableDataSource: MdTableDataSource | null; //for md-table
   @ViewChild("userSearch") private userSearch:ElementRef;
   constructor(private productService:ProductService) { }
@@ -45,7 +44,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
 class MdTableDataSource extends DataSource<any> {
   filterChange:BehaviorSubject<string> = new BehaviorSubject("");
   getUserSearch():string {return this.filterChange.value;}
-  setFilter(newFilter:string){ this.filterChange.next(newFilter);}
+  setFilter(userSearchString:string){ this.filterChange.next(userSearchString);}
   constructor(private productService:ProductService){
     super();
   }
@@ -55,8 +54,8 @@ class MdTableDataSource extends DataSource<any> {
     return this.filterChange.asObservable().switchMap(() => {
       return this.productService.getAllProductsFromDatabase().map((products:Product[]) => {
         return products.slice().filter((eachProduct:Product) => {
-          let searchString:string = (eachProduct.title+eachProduct.price).toLowerCase(); //user can search by title or price
-          let userSearch = this.getUserSearch().toLowerCase();
+          const searchString:string = (eachProduct.title+eachProduct.price).toLowerCase(); //user can search by title or price
+          const userSearch = this.getUserSearch().toLowerCase();
           return searchString.indexOf(userSearch) != -1; // return items that have title or the price 
         });
       });
