@@ -1,8 +1,19 @@
 <div>
   <div class="groupItems">
     <md-card>
-      <md-card-header>{{formDisplay}}</md-card-header>
+      <ng-container *ngIf="idFromUrl">
+        <md-menu #formOptions="mdMenu">
+          <button (click)="deleteProduct()" md-menu-item>Delete</button>
+        </md-menu>
       
+        <button [mdMenuTriggerFor]="formOptions" md-icon-button class="deleteButton">
+          <i class="material-icons">more_vert</i>
+        </button>
+      </ng-container>
+      
+
+      <md-card-header>{{formDisplay}}</md-card-header>
+      <br>
       <md-card-content>
         <form #addProductForm="ngForm" (ngSubmit)="onSubmit($event,addProductForm.value)">
           <md-form-field color="warn">

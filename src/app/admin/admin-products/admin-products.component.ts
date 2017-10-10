@@ -19,23 +19,23 @@ import { Component, ViewChild,ElementRef,OnInit,OnDestroy } from '@angular/core'
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
-  private userSearchObservable:Subscription;
+  private userSearchSubscription:Subscription;
   mdTableDisplayedColumns:string[] = ["title","price","edit"]; //for md-table
   mdTableDataSource: MdTableDataSource | null; //for md-table
-  @ViewChild("userSearch") private userSearch:ElementRef;
+  @ViewChild("userSearchInput") private userSearchInput:ElementRef;
   constructor(private productService:ProductService) { }
 
   ngOnInit() {
     this.mdTableDataSource = new MdTableDataSource(this.productService);
-    this.userSearchObservable = Observable.fromEvent(this.userSearch.nativeElement,"keyup").debounceTime(150)
+    this.userSearchSubscription = Observable.fromEvent(this.userSearchInput.nativeElement,"keyup").debounceTime(150)
     .distinctUntilChanged().subscribe(() => {
       if(!this.mdTableDataSource) {return;}
-      this.mdTableDataSource.setFilter(this.userSearch.nativeElement.value);
+      this.mdTableDataSource.setFilter(this.userSearchInput.nativeElement.value);
     });
   }
 
   ngOnDestroy(){
-    this.userSearchObservable.unsubscribe(); //prevent memory leaks!
+    this.userSearchSubscription.unsubscribe(); //prevent memory leaks!
   }
 
 }

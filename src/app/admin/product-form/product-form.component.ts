@@ -19,7 +19,7 @@ import { Component, OnInit,ViewChild} from '@angular/core';
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
-  private idFromUrl:string; // product id from the url.
+  public idFromUrl:string; // product id from the url.
   public categories$:Observable<any[]>; // we use the aysnc pipe in html file to unwrap this observable.
   public submitButtonDisplay:string; // if user is editing product, we change this.
   public formDisplay:string;
@@ -27,7 +27,7 @@ export class ProductFormComponent implements OnInit {
   @ViewChild("addProductForm") private addProductForm:NgForm; //refers to reference variable in html
   constructor(private router:Router,private activatedRoute:ActivatedRoute,
   private categoryService:CategoryService,private productService:ProductService) {
-    this.formDisplay = "Add new product";
+    this.formDisplay = "Add Product";
     this.submitButtonDisplay = "Add Product";
   }
   
@@ -42,7 +42,7 @@ export class ProductFormComponent implements OnInit {
       //take(1) only gets the first value emmited, then automatically unsubscribes!
       this.productService.getProductByIdFromDatabase(this.idFromUrl).take(1).subscribe((product:Product) => {
         this.product = product;
-        this.formDisplay = "Edit product";
+        this.formDisplay = "Edit Product";
         this.submitButtonDisplay = "Confirm";
       });
     } 
@@ -58,5 +58,12 @@ export class ProductFormComponent implements OnInit {
 
   resetAddProductForm(){ //resets all form controls!
     this.addProductForm.resetForm();
+  }
+
+  deleteProduct(){
+    if(!confirm("Are you sure you want to delete this product?")) return;
+    //TODO: implement Angular-Materia; modal here!!
+    this.productService.deleteProductInDatabase(this.idFromUrl);
+    this.router.navigate(["/admin/products"]);
   }
 }

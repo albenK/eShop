@@ -26,5 +26,9 @@ export class ProductService {
     return this.angularFireDatabase.object(this.productsCollection+"/"+productId).update(product);
   }
 
+  deleteProductInDatabase(productId:string):firebase.Promise<void>{
+    return this.angularFireDatabase.object(this.productsCollection+"/"+productId).remove();
+  }
+
 
 }
