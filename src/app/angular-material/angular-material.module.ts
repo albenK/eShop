@@ -6,6 +6,8 @@ import {MdInputModule} from '@angular/material';
 import {MdSelectModule} from '@angular/material';
 import {MdCardModule} from '@angular/material';
 import {MdTableModule} from '@angular/material';
+import {MdSortModule} from '@angular/material';
+import {MdPaginatorModule} from '@angular/material';
 
 import { NgModule } from '@angular/core';
 /*
@@ -20,7 +22,9 @@ import { NgModule } from '@angular/core';
         MdInputModule,
         MdSelectModule,
         MdCardModule,
-        MdTableModule
+        MdTableModule,
+        MdPaginatorModule,
+        MdSortModule
     ],
     exports:[
         MdToolbarModule,
@@ -29,7 +33,9 @@ import { NgModule } from '@angular/core';
         MdInputModule,
         MdSelectModule,
         MdCardModule,
-        MdTableModule
+        MdTableModule,
+        MdPaginatorModule,
+        MdSortModule
     ]
   })
 

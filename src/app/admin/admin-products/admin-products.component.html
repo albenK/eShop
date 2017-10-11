@@ -5,24 +5,24 @@
 <div class="tableWrapper mat-elevation-z8">
     <div class="tableFilter">
         <md-form-field color="warn">
-            <input #userSearchInput mdInput placeholder=" Search..."/>
+            <input #userSearchInput mdInput placeholder="Search..."/>
         </md-form-field>
     </div>
 
-    <md-table [dataSource]="mdTableDataSource">
+    <md-table [dataSource]="mdTableDataSource" mdSort>
         
         <ng-container mdColumnDef="title">
-            <md-header-cell *mdHeaderCellDef>Title</md-header-cell>
+            <md-header-cell *mdHeaderCellDef md-sort-header>Title</md-header-cell>
             <md-cell *mdCellDef="let row"> {{row.title}} </md-cell>
         </ng-container>
 
         <ng-container mdColumnDef="price">
-            <md-header-cell *mdHeaderCellDef>Price</md-header-cell>
+            <md-header-cell *mdHeaderCellDef md-sort-header>Price</md-header-cell>
             <md-cell *mdCellDef="let row">${{row.price}}</md-cell>
         </ng-container>
 
         <ng-container mdColumnDef="edit">
-            <md-header-cell *mdHeaderCellDef></md-header-cell>
+            <md-header-cell *mdHeaderCellDef md-sort-header></md-header-cell>
             <md-cell *mdCellDef="let row">
                 <a [routerLink]="['/admin/products/',row.$key]" md-button color="warn">Edit</a>
             </md-cell>
@@ -32,6 +32,13 @@
         <md-row *mdRowDef="let row; columns: mdTableDisplayedColumns;"></md-row>
     </md-table>
 
+    <md-paginator #paginator
+        color="warn"
+        [length]="mdTableDataSource.allProducts ? mdTableDataSource.allProducts.length:0"
+        [pageIndex]="0"
+        [pageSize]="5"
+        [pageSizeOptions]="[5,10,25,100]">
+    </md-paginator>
 
 </div>
 
