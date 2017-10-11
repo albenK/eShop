@@ -51,7 +51,7 @@ class MdTableDataSource extends DataSource<any> {
   getUserSearch():string {return this.filterChange.value;}
   setFilter(userSearchString:string){ this.filterChange.next(userSearchString);}
   productsSubscription:Subscription;
-  public allProducts:Product[];
+  public allProducts:Product[] = [];
   constructor(private productService:ProductService,private paginator:MdPaginator,
     private tableSort:MdSort){
     super();
@@ -87,7 +87,7 @@ class MdTableDataSource extends DataSource<any> {
   getSortedData():Product[] {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     const data = this.allProducts.slice();
-    if(!this.tableSort.active || this.tableSort.direction == "") return data.splice(startIndex,this.paginator.pageSize);
+    if(!this.tableSort.active || this.tableSort.direction == "") return data;
     //sets results per page and sorts it based on title or price.
     return data.splice(startIndex, this.paginator.pageSize).sort((a:Product,b:Product) => {
       let productA:number|string = "";
