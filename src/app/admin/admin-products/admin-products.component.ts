@@ -41,13 +41,14 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     this.userSearchSubscription.unsubscribe(); //prevent memory leaks!
+    this.mdTableDataSource.productsSubscription.unsubscribe();
   }
 
 }
 /* TODO: Maybe think of a better way to filter. This may be inneficient..???*/
 
 class MdTableDataSource extends DataSource<any> {
-  filterChange:BehaviorSubject<string> = new BehaviorSubject("");
+  filterChange:BehaviorSubject<string> = new BehaviorSubject("a");
   getUserSearch():string {return this.filterChange.value;}
   setFilter(userSearchString:string){ this.filterChange.next(userSearchString);}
   productsSubscription:Subscription;
@@ -55,6 +56,7 @@ class MdTableDataSource extends DataSource<any> {
   constructor(private productService:ProductService,private paginator:MdPaginator,
     private tableSort:MdSort){
     super();
+    
     this.productsSubscription = productService.getAllProductsFromDatabase().subscribe((products) => {
       this.allProducts = products;
     });
@@ -62,20 +64,24 @@ class MdTableDataSource extends DataSource<any> {
 
   /* connect is called automatically by md-table*/
   connect():Observable<Product[]>{
+    
     const displayDataChanges = [
+      this.paginator.page,
       this.tableSort.mdSortChange,
-      this.paginator.page
+      
     ];
-    // this is kind of a hack,but it works for now...
+  
+    //this is kind of a hack,but it works for now...
     return Observable.merge(...displayDataChanges).switchMap(() => {
       return this.filterChange.asObservable();
-    }).map((userInput:string) => {
-        return this.getSortedData().filter((eachProduct:Product) => {
-          //user can search by title or price
-          const searchString = (eachProduct.title+eachProduct.price).toLowerCase();
-          const userSearch = userInput.toLowerCase();
-          return searchString.indexOf(userSearch) != -1; //return products whose title or price match userSearch.
-      })
+    })
+    .map((userInput:string) => {
+      return this.getSortedData().filter((eachProduct:Product) => {
+        //user can search by title or price
+        const searchString = (eachProduct.title+eachProduct.price).toLowerCase();
+        const userSearch = userInput.toLowerCase();
+        return searchString.indexOf(userSearch) != -1; //return products whose title or price match userSearch.
+      });
     });
     
   }
@@ -83,20 +89,23 @@ class MdTableDataSource extends DataSource<any> {
   disconnect() {
     this.productsSubscription.unsubscribe();
   }
-
-  getSortedData():Product[] {
+  getResultsForFirstPage():Product[]{
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     const data = this.allProducts.slice();
-    if(!this.tableSort.active || this.tableSort.direction == "") return data;
+    return data.splice(startIndex,this.paginator.pageSize);
+  }
+
+  getSortedData():Product[] {
+    if(!this.tableSort.active || this.tableSort.direction === "") return this.getResultsForFirstPage();
     //sets results per page and sorts it based on title or price.
-    return data.splice(startIndex, this.paginator.pageSize).sort((a:Product,b:Product) => {
+    return this.getResultsForFirstPage().sort((a:Product,b:Product) => {
       let productA:number|string = "";
       let productB:number|string = "";
       //check which heading user clicked on. (Title or Price)?
       switch(this.tableSort.active){ // this.tableSort.active is what user clicked on.
         case "title":[productA,productB] = [a.title,b.title];break;
         case "price":[productA,productB] = [a.price,b.price];break;
-        default: 0;
+        default:0;
       }
 
       let valueA = isNaN(+productA) ? productA : +productA;
