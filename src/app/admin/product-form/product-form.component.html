@@ -1,6 +1,7 @@
 <div>
   <div class="groupItems">
     <md-card>
+      <!-- More options button -->
       <ng-container *ngIf="idFromUrl">
         <md-menu #formOptions="mdMenu">
           <button (click)="deleteProduct()" md-menu-item>Delete</button>
@@ -11,7 +12,7 @@
         </button>
       </ng-container>
       
-
+      <!-- Product Form HTML -->
       <md-card-header>{{formDisplay}}</md-card-header>
       <br>
       <md-card-content>

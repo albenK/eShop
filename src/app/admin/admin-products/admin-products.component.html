@@ -9,42 +9,29 @@
         </md-form-field>
     </div>
 
-    <!-- Angular Material table for displaying products -->
-    <md-table [dataSource]="mdTableDataSource" mdSort>
+    
+            <table style="width:100%" mdSort (mdSortChange)="sortData($event)">
+                <tr>
+                    <th md-sort-header="title">Title</th>
+                    <th md-sort-header="price">Price</th>
+                </tr>
 
-        <!-- Title column -->
-        <ng-container mdColumnDef="title">
-            <md-header-cell *mdHeaderCellDef md-sort-header>Title</md-header-cell>
-            <md-cell *mdCellDef="let row"> {{row.title}} </md-cell>
-        </ng-container>
+                <tr *ngFor="let eachProduct of filteredProducts">
+                    <td>{{eachProduct.title}}</td>
+                    <td>${{eachProduct.price}}</td>
+                    <td>
+                        <a [routerLink]="['/admin/products/', eachProduct.$key]" md-button color="warn">Edit</a>
+                    </td>
+                </tr>
+            </table>
 
-        <!-- Price column -->
-        <ng-container mdColumnDef="price">
-            <md-header-cell *mdHeaderCellDef md-sort-header>Price</md-header-cell>
-            <md-cell *mdCellDef="let row">${{row.price}}</md-cell>
-        </ng-container>
-
-        <!-- Edit column -->
-        <ng-container mdColumnDef="edit">
-            <md-header-cell *mdHeaderCellDef md-sort-header></md-header-cell>
-            <md-cell *mdCellDef="let row">
-                <a [routerLink]="['/admin/products/',row.$key]" md-button color="warn">Edit</a>
-            </md-cell>
-        </ng-container>
-
-        <!-- Setting up rows and columns -->
-        <md-header-row *mdHeaderRowDef="mdTableDisplayedColumns"></md-header-row>
-        <md-row *mdRowDef="let row; columns: mdTableDisplayedColumns;"></md-row>
-    </md-table>
-
-    <!-- Angular Material Paginator -->
-    <md-paginator #paginator
-        color="warn"
-        [length]="mdTableDataSource.allProducts.length"
-        [pageIndex]="0"
-        [pageSize]="5"
-        [pageSizeOptions]="[5,10,25,100]">
-    </md-paginator>
+            <md-paginator #paginator
+                [length]="allProducts.length"
+                [pageSize]="5"
+                [pageSizeOptions]="[5,10,25,100]"
+                (page)="filterBasedOnPage($event)">
+            </md-paginator>
+       
 
 </div>
 
