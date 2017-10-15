@@ -22,13 +22,13 @@ export class AuthService {
 
   login(){
     // get the first queryParams key we passed into the url from our AuthGuard class.
-    let paramKey = this.activatedRoute.snapshot.queryParamMap.keys[0];
+    let paramKey:string = this.activatedRoute.snapshot.queryParamMap.keys[0];
     //get the value of the redirect url from the key. if it's null, then set to home.
     let redirectUrl = this.activatedRoute.snapshot.queryParamMap.get(paramKey) || "/";
     localStorage.setItem("redirectUrl",redirectUrl);
     /* signInWithRedirect() returns a promise, but for some reason
     this promise never resolves, so we cannot do ".then()".
-    In app.component.ts we redirect the user based on redirectUrl. */
+    In app.component.ts we redirect the user based on redirectUrl in localStorage */
     this.angularFireAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
   }
 

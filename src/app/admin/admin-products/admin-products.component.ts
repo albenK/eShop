@@ -37,17 +37,12 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
     this.productsSubscription = this.productService.getAllProductsFromDatabase().subscribe((products:Product[]) => {
       this.allProducts = products.slice();
       this.filterProducts();
-      // this.filteredProducts = products.slice();
-      // this.initialPageEvent.length = this.allProducts.length;
-      // this.filterBasedOnPage(this.initialPageEvent);
     });
 
     this.userSearchSubscription = Observable.fromEvent(this.userSearchInput.nativeElement,"keyup")
     .distinctUntilChanged().debounceTime(150).subscribe((event:KeyboardEvent) => {
       this.userSearch = this.userSearchInput.nativeElement.value.toLowerCase();
       this.filterProducts();
-      // if(userSearch != "") this.filterBasedOnSearch(userSearch);
-      // else this.filterBasedOnPage(this.initialPageEvent);
     });
   }
 

@@ -21,7 +21,7 @@ export class AuthGuardService implements CanActivate {
   */ 
   canActivate(route:ActivatedRouteSnapshot,state:RouterStateSnapshot):Observable<boolean>{
     return this.authService.user$.map((firebaseUser:firebase.User) =>{
-      if(firebaseUser) {return true;} //if a firebase user exists, then return true.
+      if(firebaseUser) return true; //if a firebase user exists, then return true.
       this.router.navigate(["/login"],{queryParams:{redirectUrl:state.url}}); //otherwise route to login with current url and return false.
       return false;
     });

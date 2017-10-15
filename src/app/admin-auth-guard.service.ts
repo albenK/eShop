@@ -1,6 +1,4 @@
-import * as firebase from "firebase";
 import {Observable} from "rxjs/Observable";
-import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/map";
 import {AuthService} from "./auth.service";
 import {UserService} from "./user.service";

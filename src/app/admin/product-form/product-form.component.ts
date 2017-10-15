@@ -22,12 +22,12 @@ export class ProductFormComponent implements OnInit {
   public idFromUrl:string; // product id from the url.
   public categories$:Observable<any[]>; // we use the aysnc pipe in html file to unwrap this observable.
   public submitButtonDisplay:string; // if user is editing product, we change this.
-  public formDisplay:string;
+  public formDisplayName:string;
   public product:Product = {title:"",price:null,category:"",imageUrl:""};
   @ViewChild("addProductForm") private addProductForm:NgForm; //refers to reference variable in html
   constructor(private router:Router,private activatedRoute:ActivatedRoute,
   private categoryService:CategoryService,private productService:ProductService) {
-    this.formDisplay = "Add Product";
+    this.formDisplayName = "Add Product";
     this.submitButtonDisplay = "Add Product";
   }
   
@@ -42,7 +42,7 @@ export class ProductFormComponent implements OnInit {
       //take(1) only gets the first value emmited, then automatically unsubscribes!
       this.productService.getProductByIdFromDatabase(this.idFromUrl).take(1).subscribe((product:Product) => {
         this.product = product;
-        this.formDisplay = "Edit Product";
+        this.formDisplayName = "Edit Product";
         this.submitButtonDisplay = "Confirm";
       });
     } 
