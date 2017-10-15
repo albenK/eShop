@@ -23,6 +23,9 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   private userSearchSubscription:Subscription;
   private productsSubscription:Subscription;
   private initialPageEvent:PageEvent = {length:0,pageIndex:0,pageSize:5};
+  private userSearch:string= "";
+  private startAtIndex:number;
+  private endAtIndex:number;
   allProducts:Product[] = []; // initial array. We never want to alter this array!!
   filteredProducts:Product[] = this.allProducts; //we will alter filteredProducts for filtering and such!
   @ViewChild("userSearchInput") private userSearchInput:ElementRef;
@@ -33,16 +36,18 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.productsSubscription = this.productService.getAllProductsFromDatabase().subscribe((products:Product[]) => {
       this.allProducts = products.slice();
-      this.filteredProducts = products.slice();
-      this.initialPageEvent.length = this.allProducts.length;
-      this.filterBasedOnPage(this.initialPageEvent);
+      this.filterProducts();
+      // this.filteredProducts = products.slice();
+      // this.initialPageEvent.length = this.allProducts.length;
+      // this.filterBasedOnPage(this.initialPageEvent);
     });
 
     this.userSearchSubscription = Observable.fromEvent(this.userSearchInput.nativeElement,"keyup")
     .distinctUntilChanged().debounceTime(150).subscribe((event:KeyboardEvent) => {
-      const userSearch:string = this.userSearchInput.nativeElement.value.toLowerCase();
-      if(userSearch != "") this.filterBasedOnSearch(userSearch);
-      else this.filterBasedOnPage(this.initialPageEvent);
+      this.userSearch = this.userSearchInput.nativeElement.value.toLowerCase();
+      this.filterProducts();
+      // if(userSearch != "") this.filterBasedOnSearch(userSearch);
+      // else this.filterBasedOnPage(this.initialPageEvent);
     });
   }
 
@@ -52,27 +57,24 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
     this.userSearchSubscription.unsubscribe(); 
   }
 
-  //---- For product search ----
-  private filterBasedOnSearch(userInput:string) {
-    this.filteredProducts = this.allProducts;
-    const tempProducts:Product[] = this.filteredProducts;
-    this.filteredProducts = tempProducts.filter((eachProduct:Product) => {
+  filterProducts() {
+    //filter based on user search
+    const tempProducts:Product[] = this.allProducts.filter((eachProduct:Product) => {
+      //user can search by title or price, so we concatenate those.
       const searchString:string = (eachProduct.title+eachProduct.price).toLowerCase();
-      return searchString.indexOf(userInput) != -1;
+      return searchString.indexOf(this.userSearch) != -1;
+    });
+    //set up indeces to grab the correct number of products based on page.
+    this.startAtIndex = this.paginator.pageIndex * this.paginator.pageSize;
+    this.endAtIndex = this.startAtIndex + (this.paginator.pageSize - 1);
+    
+    //filter based on indeces..
+    this.filteredProducts = tempProducts.filter((eachProduct:Product,index:number) => {
+      return index >= this.startAtIndex && index <= this.endAtIndex;
     });
   }
 
-  //---- For pagination interaction ----
-  filterBasedOnPage(pageEvent:PageEvent) {
-    this.filteredProducts = this.allProducts;
-    const startAtIndex = pageEvent.pageSize * pageEvent.pageIndex;
-    const endAtIndex = startAtIndex + (pageEvent.pageSize - 1);
-    this.filteredProducts = this.filteredProducts.filter((eachProduct:Product,index:number) => {
-      return index >= startAtIndex && index <= endAtIndex;
-    });
-  }
-
-  //---- For sorting interaction ----
+  //---- For sorting based on Title or Price ----
   sortData(sort:Sort){
     const data:Product[] = this.filteredProducts;
     if(!sort.active || sort.direction == ""){

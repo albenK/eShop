@@ -33,4 +33,5 @@
 /* mat-form-field is applied automatically to all md-form-field throughout app*/
 .mat-form-field{
      width:100%;
+     max-width: 500px;
 }
