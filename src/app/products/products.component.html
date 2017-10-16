@@ -1,1 +1,26 @@
-<p>Products works!</p>
+<md-card>
+    <md-card-content>
+        <md-select color="warn" placeholder="Filter by Category">
+            <md-option *ngFor="let eachCategory of allCategories$ | async" [value]="eachCategory.$key">
+                {{eachCategory.name}}
+            </md-option>
+        </md-select>
+    </md-card-content>
+</md-card>
+
+<md-card *ngFor="let eachProduct of allProducts$ | async" class="productWrapper mat-elevation-z8">
+    <img [src]="eachProduct.imageUrl" md-card-image>
+    <md-card-content>
+        <h4>{{eachProduct.title}}</h4>
+        <p>{{eachProduct.price | currency:'USD':true}}</p>
+        <a href="javascript:void(0)" md-raised-button color="warn" class="eShopButton">Add to Cart</a>
+    </md-card-content>
+</md-card>
+
+    
+                 
+   
+
+
+
+

@@ -11,7 +11,7 @@ export class CategoryService {
 
   getAllCategoriesFromDatabase():FirebaseListObservable<any[]> {
     return this.angularFireDatabase.list(this.categoryCollection,{
-      query:{ // this is just to sort the names alphabetically.
+      query:{ // this is just to sort the category names alphabetically.
         orderByChild:"name"
       }
     });
