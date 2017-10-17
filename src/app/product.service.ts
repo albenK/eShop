@@ -24,10 +24,10 @@ export class ProductService {
     return this.angularFireDatabase.object(this.productsCollection+"/"+productId);
   }
 
-  getProductsByCategory(categoryKey:string):FirebaseListObservable<Product[]> {
-    const theQuery:FirebaseListFactoryOpts = {query:{orderByChild:"category",equalTo:categoryKey}};
-    return this.angularFireDatabase.list(this.productsCollection+"/",theQuery);
-  }
+  // getProductsByCategory(categoryKey:string):FirebaseListObservable<Product[]> {
+  //   const theQuery:FirebaseListFactoryOpts = {query:{orderByChild:"category",equalTo:categoryKey}};
+  //   return this.angularFireDatabase.list(this.productsCollection+"/",theQuery);
+  // }
 
   updateProductInDatabase(productId:string,updatedProduct:Product):firebase.Promise<void> {
     return this.angularFireDatabase.object(this.productsCollection+"/"+productId).update(updatedProduct);

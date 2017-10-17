@@ -4,6 +4,12 @@
     display: inline-block;
 }
 
+.loadingSpinner{
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
 /* when screen width is less than 800px*/
 /* @media(max-width:800px){
     .productWrapper{

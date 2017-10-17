@@ -1,22 +1,33 @@
-<md-card>
-    <md-card-content>
-        <md-select (change)="onCategoryChange()" [(ngModel)]="category" color="warn" placeholder="Filter by Category">
-            <md-option [value]="'all'">All Categories</md-option>
-            <md-option *ngFor="let eachCategory of allCategories$ | async" [value]="eachCategory.$key">
-                {{eachCategory.name}}
-            </md-option>
-        </md-select>
-    </md-card-content>
-</md-card>
+<!-- Loading -->
+<md-spinner *ngIf="isLoading; else mainContent" color="warn" class="loadingSpinner"></md-spinner>
 
-<md-card *ngFor="let eachProduct of allProducts$ | async" class="productWrapper mat-elevation-z8">
-    <img [src]="eachProduct.imageUrl" md-card-image>
-    <md-card-content>
-        <h4>{{eachProduct.title}}</h4>
-        <p>{{eachProduct.price | currency:'USD':true}}</p>
-        <a href="javascript:void(0)" md-raised-button color="warn" class="eShopButton">Add to Cart</a>
-    </md-card-content>
-</md-card>
+<!-- Container for Categories and all products-->
+<ng-template #mainContent>
+    <!-- Category selection-->
+    <md-card>
+        <md-card-content>
+            <md-select (change)="filterProductsBasedOnCategory()" [(ngModel)]="userSelectedCategory" color="warn" placeholder="Filter by Category">
+                <md-option [value]="'all'">All Categories</md-option>
+                <md-option *ngFor="let eachCategory of allCategories$ | async" [value]="eachCategory.$key">
+                    {{eachCategory.name}}
+                </md-option>
+            </md-select>
+        </md-card-content>
+    </md-card>
+
+    <!-- Display Products-->
+    <md-card *ngFor="let eachProduct of filteredProducts" class="productWrapper mat-elevation-z8">
+        <img [src]="eachProduct.imageUrl" md-card-image/>
+        <md-card-content>
+            <h4>{{eachProduct.title}}</h4>
+            <p>{{eachProduct.price | currency:'USD':true}}</p>
+            <a href="javascript:void(0)" md-raised-button color="warn" class="eShopButton">Add to Cart</a>
+        </md-card-content>
+    </md-card>
+</ng-template>
+
+
+
 
     
                  

@@ -7,7 +7,7 @@ import {MdSelectModule} from '@angular/material';
 import {MdCardModule} from '@angular/material';
 import {MdSortModule} from '@angular/material';
 import {MdPaginatorModule} from '@angular/material';
-
+import {MdProgressSpinnerModule} from '@angular/material';
 
 import { NgModule } from '@angular/core';
 /*
@@ -17,6 +17,7 @@ import { NgModule } from '@angular/core';
 @NgModule({
     imports: [
         MdToolbarModule,
+        MdProgressSpinnerModule,
         MdButtonModule,
         MdMenuModule,
         MdInputModule,
@@ -27,6 +28,7 @@ import { NgModule } from '@angular/core';
     ],
     exports:[
         MdToolbarModule,
+        MdProgressSpinnerModule,
         MdButtonModule,
         MdMenuModule,
         MdInputModule,
