@@ -1,31 +1,15 @@
-<!-- Loading -->
+<!-- Loading Spinner-->
 <md-spinner *ngIf="isLoading; else mainContent" color="warn" class="loadingSpinner"></md-spinner>
 
-<!-- Container for Categories and all products-->
+<!-- Container for product filtering and displaying products-->
 <ng-template #mainContent>
-    <!-- Category selection-->
-    <md-card>
-        <md-card-content>
-            <md-select (change)="filterProductsBasedOnCategory()" [(ngModel)]="userSelectedCategory" color="warn" placeholder="Filter by Category">
-                <md-option [value]="'all'">All Categories</md-option>
-                <md-option *ngFor="let eachCategory of allCategories$ | async" [value]="eachCategory.$key">
-                    {{eachCategory.name}}
-                </md-option>
-            </md-select>
-        </md-card-content>
-    </md-card>
-
+    <product-filter (categoryChange)="filterProducts($event)"></product-filter>
+    
     <!-- Display Products-->
-    <md-card *ngFor="let eachProduct of filteredProducts" class="productWrapper mat-elevation-z8">
-        <img [src]="eachProduct.imageUrl" md-card-image/>
-        <md-card-content>
-            <h4>{{eachProduct.title}}</h4>
-            <p>{{eachProduct.price | currency:'USD':true}}</p>
-            <a href="javascript:void(0)" md-raised-button color="warn" class="eShopButton">Add to Cart</a>
-        </md-card-content>
-    </md-card>
+    <ng-container *ngFor="let eachProduct of filteredProducts">
+        <product-card [product]="eachProduct" [addToCartDisabled]="false"></product-card>
+    </ng-container>
 </ng-template>
-
 
 
 

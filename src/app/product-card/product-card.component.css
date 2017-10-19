@@ -1,0 +1,11 @@
+.productCard {
+    max-width:200px;
+    margin:10px;
+    display: inline-block;
+}
+
+.productImage {
+    height:150px;
+    /* max-height:200px;  */
+    /* max-height: 200px; */
+}

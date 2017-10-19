@@ -6,7 +6,7 @@
 
 /* Some simple css for properly displaying on mobile screens*/
 .groupItems{
-  width:500px;
+  /* width:500px; */
   display:inline-block;
 }
 .deleteButton{

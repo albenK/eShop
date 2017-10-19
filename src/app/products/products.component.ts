@@ -1,10 +1,10 @@
-import { Observable } from "rxjs/Observable";
+
 import { ProductService } from "../product.service";
 import { Product } from "../models/product";
-import { CategoryService } from "../category.service";
-import { MdSelectChange } from "@angular/material";
-import { Component, OnInit,OnDestroy } from '@angular/core';
 import { Subscription } from "rxjs/Subscription";
+import { FilterEvent } from "./models/filter-event";
+import { Component, OnInit,OnDestroy } from '@angular/core';
+
 
 @Component({
   selector: 'app-products',
@@ -15,18 +15,17 @@ export class ProductsComponent implements OnInit,OnDestroy {
   private productsSubscription:Subscription;
   private allProducts:Product[] = [];//We never want to alter this array!!
   filteredProducts:Product[] = this.allProducts; //used for filtering...
-  allCategories$:Observable<any[]>; //we use the async pipe in HTML file.
   isLoading:boolean = true; // to display md-spinner.
-  userSelectedCategory:string = "all";//represents category user has selected. We use ngModel in HTML file.
-  constructor(private productService:ProductService,private categoryService:CategoryService) {
-    this.allCategories$ = categoryService.getAllCategoriesFromDatabase();
+  
+  constructor(private productService:ProductService) {
   }
 
   ngOnInit() {
     this.productsSubscription = this.productService.getAllProductsFromDatabase()
     .subscribe((products:Product[]) => {
       this.allProducts = products.slice();
-      this.filterProductsBasedOnCategory();
+      const filterEvent:FilterEvent = {filterBy:"categories",valueToFilterBy:"all"};
+      this.filterProducts(filterEvent);
     });
   }
 
@@ -34,11 +33,12 @@ export class ProductsComponent implements OnInit,OnDestroy {
     this.productsSubscription.unsubscribe();
   }
 
-  filterProductsBasedOnCategory() {
+  filterProducts(filterEvent:FilterEvent) {
     this.isLoading = true;
-    this.filteredProducts = (this.userSelectedCategory === "all")?(this.allProducts)
-    :(this.allProducts.filter(eachProduct => eachProduct.category === this.userSelectedCategory));
+    this.filteredProducts = (filterEvent.valueToFilterBy === "all")?(this.allProducts)
+    :(this.allProducts.filter(eachProduct => eachProduct.category === filterEvent.valueToFilterBy));
     this.isLoading = false;
   }
+  
 
 }

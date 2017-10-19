@@ -60,15 +60,6 @@
     </md-card>
   </div>
 
-  <!-- Product Preview HTML. -->
-  <div *ngIf="product.title" class="groupItems">
-    <md-card>
-      <img *ngIf="product.imageUrl" [src]="product.imageUrl" md-card-image>
-
-      <md-card-content>
-        <h4>{{product.title}}</h4>
-        <p *ngIf="product.price || product.price === 0">{{product.price | currency:'USD':true}}</p>
-      </md-card-content>
-    </md-card>
-  </div>
+  <!-- Product Preview -->
+  <product-card *ngIf="product.title" class="groupItems" [product]="product" [addToCartDisabled]="true"></product-card>
 </div>

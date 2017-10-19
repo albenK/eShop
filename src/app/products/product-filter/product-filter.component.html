@@ -1,0 +1,11 @@
+<!-- Filter by Category-->
+<md-card>
+  <md-card-content>
+      <md-select (change)="onCategoryChange()" [(ngModel)]="userSelectedCategory" color="warn" placeholder="Filter by Category">
+          <md-option [value]="'all'">All Categories</md-option>
+          <md-option *ngFor="let eachCategory of allCategories$ | async" [value]="eachCategory.$key">
+              {{eachCategory.name}}
+          </md-option>
+      </md-select>
+  </md-card-content>
+</md-card>

@@ -31,6 +31,8 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { LoginComponent } from './login/login.component';
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 const routes:Routes = [
   {path:"",component:ProductsComponent},
@@ -82,7 +84,9 @@ const routes:Routes = [
     ProductFormComponent,
     AdminOrdersComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ProductFilterComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,

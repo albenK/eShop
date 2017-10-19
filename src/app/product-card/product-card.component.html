@@ -1,0 +1,8 @@
+<md-card class="productCard mat-elevation-z8">
+    <img md-card-image [src]="product.imageUrl" alt="Image goes here" class="productImage"/>
+    <md-card-content>
+        <h4>{{product.title}}</h4>
+        <p>{{product.price | currency:'USD':true}}</p>
+        <a [disabled]="addToCartDisabled" href="javascript:void(0)" md-raised-button color="warn" class="eShopButton">Add to Cart</a>
+    </md-card-content>
+</md-card>

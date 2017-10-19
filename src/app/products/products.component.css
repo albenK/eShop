@@ -1,9 +1,3 @@
-.productWrapper{
-    max-width:200px;
-    margin:10px;
-    display: inline-block;
-}
-
 .loadingSpinner{
     position: fixed;
     top:50%;
