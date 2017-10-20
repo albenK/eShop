@@ -9,14 +9,17 @@ import { NgModule} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule,Routes} from "@angular/router";
-import {AngularMaterialModule} from "./angular-material/angular-material.module";
+
 
 import {AuthService} from "./auth.service";
 import {UserService} from "./user.service";
 import {CategoryService} from "./category.service";
 import {ProductService} from "./product.service";
+import {ShoppingCartService} from "./shopping-cart.service";
 import {AuthGuardService} from "./auth-guard.service";
 import {AdminAuthGuardService} from "./admin-auth-guard.service";
+
+import {AngularMaterialModule} from "./angular-material/angular-material.module";
 
 import { AppComponent } from './app.component';
 import { AppToolbarComponent } from './app-toolbar/app-toolbar.component';
@@ -101,11 +104,12 @@ const routes:Routes = [
   ],
   providers: [
     AuthService,
+    AuthGuardService,
+    AdminAuthGuardService,
     UserService,
     CategoryService,
     ProductService,
-    AuthGuardService,
-    AdminAuthGuardService
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })

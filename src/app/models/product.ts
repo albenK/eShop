@@ -4,6 +4,7 @@
     a new product within the product-form.component, or when they retrieve products.
 */
 export interface Product {
+    $key:string;//refers to firebase generated id.
     title:string;
     price:number;
     category:string;

@@ -7,7 +7,7 @@
     
     <!-- Display Products-->
     <ng-container *ngFor="let eachProduct of filteredProducts">
-        <product-card [product]="eachProduct" [addToCartDisabled]="false"></product-card>
+        <product-card [product]="eachProduct" [showActionButtons]="true"></product-card>
     </ng-container>
 </ng-template>
 

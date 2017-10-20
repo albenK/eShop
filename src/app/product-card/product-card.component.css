@@ -6,6 +6,12 @@
 
 .productImage {
     height:150px;
-    /* max-height:200px;  */
-    /* max-height: 200px; */
+}
+/* make the Add to Cart button width 100%*/
+.mat-card-header {
+    display:block;
+}
+
+.addToCartButton {
+    width: 100%;
 }

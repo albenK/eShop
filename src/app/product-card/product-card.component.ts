@@ -1,4 +1,5 @@
 import { Product } from '../models/product';
+import { ShoppingCartService } from '../shopping-cart.service';
 import { Component, Input,OnInit } from '@angular/core';
 
 
@@ -9,10 +10,14 @@ import { Component, Input,OnInit } from '@angular/core';
 })
 export class ProductCardComponent implements OnInit {
   @Input("product") product:Product;
-  @Input("addToCartDisabled") addToCartDisabled:boolean = true;
-  constructor() { }
+  @Input("showActionButtons") showActionButtons:boolean = false;
+  constructor(private shoppingCartService:ShoppingCartService) { }
 
   ngOnInit() {
+  }
+
+  addToShoppingCart(product:Product) {
+    this.shoppingCartService.addToShoppingCart(product);
   }
 
 }
