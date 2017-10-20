@@ -23,7 +23,7 @@ export class ProductFormComponent implements OnInit {
   public categories$:Observable<any[]>; // we use the aysnc pipe in html file to unwrap this observable.
   public submitButtonDisplay:string; // if user is editing product, we change this.
   public formDisplayName:string;
-  public product:Product = {title:"",price:null,category:"",imageUrl:""};
+  public product:Product = {$key:"",title:"",price:null,category:"",imageUrl:""};
   @ViewChild("addProductForm") private addProductForm:NgForm; //refers to reference variable in html
   constructor(private router:Router,private activatedRoute:ActivatedRoute,
   private categoryService:CategoryService,private productService:ProductService) {
