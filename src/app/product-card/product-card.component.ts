@@ -10,8 +10,9 @@ import { Component, Input,OnInit } from '@angular/core';
 })
 export class ProductCardComponent implements OnInit {
   @Input("product") product:Product;
+  @Input("shoppingCart") shoppingCart:any;
   @Input("showActionButtons") showActionButtons:boolean = false;
-  @Input("shoppingCart") shoppingCart;
+  
   constructor(private shoppingCartService:ShoppingCartService) { }
 
   ngOnInit() {
@@ -22,7 +23,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   getQuantityOfItemInShoppingCart():number {
-    if(!this.shoppingCart) return 0;
+    if(!this.shoppingCart || !this.shoppingCart.Items) return 0;
     let item = this.shoppingCart.Items[this.product.$key];
     return (item)?(item.quantity):(0);
   }
