@@ -17,9 +17,11 @@ export class ShoppingCartService {
     const newShoppingCart = {dateCreated:new Date().getTime()};
     return this.angularFireDatabase.list(this.shoppingCartCollection).push(newShoppingCart);
   }
-
-  private getShoppingCartByIdFromDatabase(shoppingCartId:string):FirebaseObjectObservable<Object> {
-    return this.angularFireDatabase.object(this.shoppingCartCollection+"/"+shoppingCartId);
+  
+  //async means we  HAVE to return a promise
+  async getShoppingCartFromDatabase():Promise<FirebaseObjectObservable<any>> {
+    const cartId:string = await this.getOrCreateShoppingCartId();
+    return this.angularFireDatabase.object(this.shoppingCartCollection+"/"+cartId);
   }
 
   //async means we  HAVE to return a promise

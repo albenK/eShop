@@ -3,11 +3,12 @@
     <md-card-content>
         <h4>{{product.title}}</h4>
         <p>{{product.price | currency:'USD':true}}</p>
-        <md-card-header>
-            <md-card-actions *ngIf="showActionButtons">
-                <button (click)="addToShoppingCart(product)" md-raised-button color="warn" 
-                class="eShopButton addToCartButton">Add to Cart</button>
-            </md-card-actions>
-        </md-card-header>
+
+        <!-- Card Footer-->
+        <md-card-actions *ngIf="showActionButtons">
+            <button (click)="addToShoppingCart(product)" md-raised-button color="warn" 
+            class="eShopButton addToCartButton">Add to Cart</button>
+            {{getQuantityOfItemInShoppingCart()}}
+        </md-card-actions>
     </md-card-content>
 </md-card>

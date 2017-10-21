@@ -7,11 +7,8 @@
 .productImage {
     height:150px;
 }
-/* make the Add to Cart button width 100%*/
-.mat-card-header {
-    display:block;
-}
 
+/* make the Add to Cart button width 100%*/
 .addToCartButton {
     width: 100%;
 }

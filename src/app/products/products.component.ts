@@ -1,5 +1,5 @@
-
 import { ProductService } from "../product.service";
+import { ShoppingCartService } from "../shopping-cart.service";
 import { Product } from "../models/product";
 import { Subscription } from "rxjs/Subscription";
 import { FilterEvent } from "./models/filter-event";
@@ -13,14 +13,19 @@ import { Component, OnInit,OnDestroy } from '@angular/core';
 })
 export class ProductsComponent implements OnInit,OnDestroy {
   private productsSubscription:Subscription;
+  private shoppingCartSubscription:Subscription;
   private allProducts:Product[] = [];//We never want to alter this array!!
   filteredProducts:Product[] = this.allProducts; //used for filtering...
   isLoading:boolean = true; // to display md-spinner.
-  
-  constructor(private productService:ProductService) {
+  shoppingCart:any;
+  constructor(private productService:ProductService,private shoppingCartService:ShoppingCartService) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    //we await until we get the shopping cart, THEN get all products.
+    this.shoppingCartSubscription = (await this.shoppingCartService.getShoppingCartFromDatabase())
+    .subscribe(cart => this.shoppingCart = cart);
+    //get all products and filter them.
     this.productsSubscription = this.productService.getAllProductsFromDatabase()
     .subscribe((products:Product[]) => {
       this.allProducts = products.slice();
@@ -30,6 +35,7 @@ export class ProductsComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy() {
+    this.shoppingCartSubscription.unsubscribe();
     this.productsSubscription.unsubscribe();
   }
 
