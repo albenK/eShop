@@ -37,15 +37,18 @@ export class ShoppingCartService {
     return result["key"];
   }
 
+  private getItemReference(cartId:string,productId:string):FirebaseObjectObservable<any> {
+    return this.angularFireDatabase.object(this.shoppingCartCollection+"/"+cartId+"/Items/"+productId);
+  }
+
   async addToShoppingCart(product:Product) {
     //we await until this promise is done and get the value.
     let cartId:string = await this.getOrCreateShoppingCartId();
-    let item$:FirebaseObjectObservable<any> = this.angularFireDatabase.object(this.shoppingCartCollection+"/"+cartId+"/Items/"+product.$key);
-    /* take(1) gets only the first emmited value and unsubscribes. If the item already exists,
-      then we just update the quantity. Otherwise we set the product and the quantity.*/
+    let item$:FirebaseObjectObservable<any> = this.getItemReference(cartId,product.$key);
+    /* take(1) gets only the first emmited value and unsubscribes. We then update
+     the items in the shopping cart*/
     item$.take(1).subscribe((item) => {
-      if(item.$exists()) item$.update({quantity:item.quantity + 1});
-      else item$.set({product:product,quantity:1});
+      item$.update({product:product,quantity:(item.quantity || 0) + 1});
     });
   }
 
