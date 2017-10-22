@@ -6,9 +6,15 @@
 
         <!-- Card Footer-->
         <md-card-actions *ngIf="showActionButtons">
-            <button (click)="addToShoppingCart(product)" md-raised-button color="warn" 
+            <button *ngIf="getQuantity() === 0; else updateQuantity" (click)="addToShoppingCart(product)" md-raised-button color="primary" 
             class="eShopButton addToCartButton">Add to Cart</button>
-            {{getQuantityOfItemInShoppingCart()}}
+            <ng-template #updateQuantity>
+                <div class="quantityUpdate">
+                    <button class="plusMinusButtons" style="float:left" md-raised-button color="primary">-</button>
+                    <span class="productQuantity">{{getQuantity()}} in cart</span>
+                    <button class="plusMinusButtons" style="float:right" md-raised-button color="primary">+</button>
+                </div>
+            </ng-template>
         </md-card-actions>
     </md-card-content>
 </md-card>
