@@ -11,3 +11,11 @@
 .appToolbarButton{ 
     font-size: 20px;
 }
+
+.shoppingCartBadge {
+    width:20px;
+    border-radius: 10px;
+    font-size: 20px;
+    text-align: center;
+    /* background-color: #0099ff; */
+}

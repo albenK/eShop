@@ -16,6 +16,7 @@ export class AppToolbarComponent implements OnInit,OnDestroy {
   private appUserSubscription:Subscription;
   private shoppingCartSubscription:Subscription;
   appUser:AppUser;
+  totalNumberOfItemsInShoppingCart:number = 0;
   constructor(private authService:AuthService,private shoppingCartService:ShoppingCartService) { 
   }
 
@@ -26,7 +27,9 @@ export class AppToolbarComponent implements OnInit,OnDestroy {
 
     const shoppingCart$ = await this.shoppingCartService.getShoppingCartFromDatabase();
     this.shoppingCartSubscription = shoppingCart$.subscribe((cart:ShoppingCart) => {
-      
+      this.totalNumberOfItemsInShoppingCart = 0;
+      for(let eachProductId in cart.Items) 
+        this.totalNumberOfItemsInShoppingCart += cart.Items[eachProductId].quantity;
     });
   }
 

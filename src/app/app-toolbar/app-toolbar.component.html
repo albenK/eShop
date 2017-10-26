@@ -4,6 +4,11 @@
   <button routerLink="/shopping-cart" md-icon-button>
     <i class="material-icons">shopping_cart</i>
   </button>
+
+  <!-- Shopping cart badge-->
+  <md-chip *ngIf="totalNumberOfItemsInShoppingCart" 
+    class="shoppingCartBadge">{{totalNumberOfItemsInShoppingCart}}
+  </md-chip>
   <span class="someSpace"></span>
   
   <md-menu #dropDownMenu> <!-- TODO: use ngFor to display links once routing is set up-->
