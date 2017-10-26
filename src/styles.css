@@ -1,6 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+.mat-toolbar {
+z-index:1000;
+margin-top:-50px;
+position: fixed;
+}
+
 /* the container for each component that's rendered.*/
 .container{
     font-family:"Roboto",Helvetica,sans-serif;
