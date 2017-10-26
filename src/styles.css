@@ -3,7 +3,7 @@
 
 .mat-toolbar {
 z-index:1000;
-margin-top:-50px;
+margin-top:-80px;
 position: fixed;
 }
 
@@ -11,7 +11,7 @@ position: fixed;
 .container{
     font-family:"Roboto",Helvetica,sans-serif;
     font-size:20px;
-    margin-top:50px;
+    margin-top:80px;
     margin-left:20px;
 }
 /* eShopButton class is applied to any button with an md-raised-button directive */
