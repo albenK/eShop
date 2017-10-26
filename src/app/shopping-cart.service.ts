@@ -4,6 +4,8 @@ import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/take";
 import { Product } from './models/product';
 import { Injectable } from '@angular/core';
+import { ShoppingCart } from './models/shopping-cart';
+import { ShoppingCartItem } from './models/shopping-cart-item';
 
 
 @Injectable()
@@ -19,7 +21,7 @@ export class ShoppingCartService {
   }
   
   //async means we  HAVE to return a promise
-  async getShoppingCartFromDatabase():Promise<FirebaseObjectObservable<any>> {
+  async getShoppingCartFromDatabase():Promise<FirebaseObjectObservable<ShoppingCart>> {
     const cartId:string = await this.getOrCreateShoppingCartId();
     return this.angularFireDatabase.object(this.shoppingCartCollection+"/"+cartId);
   }
@@ -39,7 +41,7 @@ export class ShoppingCartService {
     return result["key"];
   }
 
-  private getItemReference(cartId:string,productId:string):FirebaseObjectObservable<any> {
+  private getItemReference(cartId:string,productId:string):FirebaseObjectObservable<ShoppingCartItem> {
     return this.angularFireDatabase.object(this.shoppingCartCollection+"/"+cartId+"/Items/"+productId);
   }
 

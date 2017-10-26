@@ -1,7 +1,11 @@
 import {Subscription} from "rxjs/Subscription";
 import {AuthService} from "../auth.service";
 import {AppUser} from "../models/app-user";
+import { ShoppingCartService } from "../shopping-cart.service";
+import { ShoppingCart } from "../models/shopping-cart";
 import { Component, OnInit, OnDestroy} from '@angular/core';
+
+
 
 @Component({
   selector: 'app-toolbar',
@@ -9,18 +13,28 @@ import { Component, OnInit, OnDestroy} from '@angular/core';
   styleUrls: ['./app-toolbar.component.css']
 })
 export class AppToolbarComponent implements OnInit,OnDestroy {
-  appUserSubscription:Subscription;
+  private appUserSubscription:Subscription;
+  private shoppingCartSubscription:Subscription;
   appUser:AppUser;
-  constructor(public authService:AuthService) { 
+  constructor(private authService:AuthService,private shoppingCartService:ShoppingCartService) { 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.appUserSubscription = this.authService.getAppUser$().subscribe((user:AppUser) => {
       this.appUser = user;
     });
+
+    const shoppingCart$ = await this.shoppingCartService.getShoppingCartFromDatabase();
+    this.shoppingCartSubscription = shoppingCart$.subscribe((cart:ShoppingCart) => {
+      
+    });
   }
+
+  /*we dont need to unsubscribe because we only have a single instance of our toolbar,
+    but it's good practice...*/
   ngOnDestroy(){
     this.appUserSubscription.unsubscribe();
+    this.shoppingCartSubscription.unsubscribe();
   }
 
   logout(){

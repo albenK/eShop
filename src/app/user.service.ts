@@ -14,6 +14,7 @@ export class UserService {
     this.userCollection = "/Users";
    }
 
+  //we call this when the user successfully logs in.
   updateUserInfoInDatabase(user:firebase.User){
     let userInfo:Object = {name:user.displayName,email:user.email};
     this.angularFireDatabase.object(this.userCollection+"/"+user.uid).update(userInfo);

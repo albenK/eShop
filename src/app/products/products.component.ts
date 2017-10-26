@@ -3,7 +3,9 @@ import { ShoppingCartService } from "../shopping-cart.service";
 import { Product } from "../models/product";
 import { Subscription } from "rxjs/Subscription";
 import { FilterEvent } from "./models/filter-event";
+import { ShoppingCart } from "../models/shopping-cart";
 import { Component, OnInit,OnDestroy } from '@angular/core';
+
 
 
 @Component({
@@ -17,7 +19,7 @@ export class ProductsComponent implements OnInit,OnDestroy {
   private allProducts:Product[] = [];//We never want to alter this array!!
   filteredProducts:Product[] = this.allProducts; //used for filtering...
   isLoading:boolean = true; // to display md-spinner.
-  shoppingCart:any;
+  shoppingCart:ShoppingCart;
   constructor(private productService:ProductService,private shoppingCartService:ShoppingCartService) {
   }
 
