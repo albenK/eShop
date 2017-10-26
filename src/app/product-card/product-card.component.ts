@@ -18,9 +18,14 @@ export class ProductCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  addToShoppingCart(product:Product) {
-    this.shoppingCartService.addToShoppingCart(product);
+  addToShoppingCart() {
+    this.shoppingCartService.addToShoppingCartInDatabase(this.product);
   }
+
+  removeFromShoppingCart() {
+    this.shoppingCartService.removeFromShoppingCartInDatabase(this.product);
+  }
+
   // for displaying the quantity of items in shopping cart.
   getQuantity():number {
     if(!this.shoppingCart || !this.shoppingCart.Items) return 0;
