@@ -6,8 +6,8 @@
   </button>
 
   <!-- Shopping cart badge-->
-  <md-chip *ngIf="totalNumberOfItemsInShoppingCart" 
-    class="shoppingCartBadge">{{totalNumberOfItemsInShoppingCart}}
+  <md-chip *ngIf="shoppingCart$ | async as shoppingCart" 
+    class="shoppingCartBadge">{{shoppingCart.getTotalNumberOfItems()}}
   </md-chip>
   <span class="someSpace"></span>
   

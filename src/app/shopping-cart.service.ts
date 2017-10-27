@@ -2,11 +2,11 @@ import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/data
 import * as firebase from "firebase";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/take";
+import "rxjs/add/operator/map";
 import { Product } from './models/product';
-import { Injectable } from '@angular/core';
 import { ShoppingCart } from './models/shopping-cart';
 import { ShoppingCartItem } from './models/shopping-cart-item';
-
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ShoppingCartService {
@@ -21,9 +21,10 @@ export class ShoppingCartService {
   }
   
   //async means we  HAVE to return a promise
-  async getShoppingCartFromDatabase():Promise<FirebaseObjectObservable<ShoppingCart>> {
+  async getShoppingCartFromDatabase():Promise<Observable<ShoppingCart>> {
     const cartId:string = await this.getOrCreateShoppingCartId();
-    return this.angularFireDatabase.object(this.shoppingCartCollection+"/"+cartId);
+    return this.angularFireDatabase.object(this.shoppingCartCollection+"/"+cartId)
+    .map(cart => new ShoppingCart(cart.Items,cart.dateCreated));
   }
 
   //async means we  HAVE to return a promise
@@ -60,7 +61,7 @@ export class ShoppingCartService {
   private async updateItemQuantity(product:Product,addOrRemove:number):Promise<void> {
     //we await until this promise is done and get the value.
     let cartId:string = await this.getOrCreateShoppingCartId();
-    let item$:FirebaseObjectObservable<any> = this.getItemReference(cartId,product.$key);
+    let item$:FirebaseObjectObservable<ShoppingCartItem> = this.getItemReference(cartId,product.$key);
     /* take(1) gets only the first emmited value and unsubscribes. We then update
      the items in the shopping cart*/
     item$.take(1).subscribe((item) => {

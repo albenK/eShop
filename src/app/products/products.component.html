@@ -8,9 +8,10 @@
     <!-- Display Products-->
     <ng-container *ngFor="let eachProduct of filteredProducts">
         <product-card
-        [product]="eachProduct" 
-        [showActionButtons]="true"
-        [shoppingCart]="shoppingCart"></product-card>
+            [product]="eachProduct" 
+            [showActionButtons]="true"
+            [shoppingCart]="shoppingCart">
+        </product-card>
     </ng-container>
 </ng-template>
 

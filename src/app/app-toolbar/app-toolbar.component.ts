@@ -1,10 +1,10 @@
 import {Subscription} from "rxjs/Subscription";
+import { Observable } from "rxjs/Observable";
 import {AuthService} from "../auth.service";
 import {AppUser} from "../models/app-user";
 import { ShoppingCartService } from "../shopping-cart.service";
 import { ShoppingCart } from "../models/shopping-cart";
 import { Component, OnInit, OnDestroy} from '@angular/core';
-
 
 
 @Component({
@@ -14,22 +14,15 @@ import { Component, OnInit, OnDestroy} from '@angular/core';
 })
 export class AppToolbarComponent implements OnInit,OnDestroy {
   private appUserSubscription:Subscription;
-  private shoppingCartSubscription:Subscription;
   appUser:AppUser;
-  totalNumberOfItemsInShoppingCart:number = 0;
+  shoppingCart$:Observable<ShoppingCart>;
   constructor(private authService:AuthService,private shoppingCartService:ShoppingCartService) { 
   }
 
   async ngOnInit() {
+    this.shoppingCart$ = await this.shoppingCartService.getShoppingCartFromDatabase();
     this.appUserSubscription = this.authService.getAppUser$().subscribe((user:AppUser) => {
       this.appUser = user;
-    });
-
-    const shoppingCart$ = await this.shoppingCartService.getShoppingCartFromDatabase();
-    this.shoppingCartSubscription = shoppingCart$.subscribe((cart:ShoppingCart) => {
-      this.totalNumberOfItemsInShoppingCart = 0;
-      for(let eachProductId in cart.Items) 
-        this.totalNumberOfItemsInShoppingCart += cart.Items[eachProductId].quantity;
     });
   }
 
@@ -37,7 +30,6 @@ export class AppToolbarComponent implements OnInit,OnDestroy {
     but it's good practice...*/
   ngOnDestroy(){
     this.appUserSubscription.unsubscribe();
-    this.shoppingCartSubscription.unsubscribe();
   }
 
   logout(){

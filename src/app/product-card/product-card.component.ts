@@ -1,6 +1,7 @@
 import { Product } from '../models/product';
 import { ShoppingCartService } from '../shopping-cart.service';
 import { ShoppingCart } from '../models/shopping-cart';
+import { ShoppingCartItem } from '../models/shopping-cart-item';
 import { Component, Input,OnInit } from '@angular/core';
 
 
@@ -30,7 +31,7 @@ export class ProductCardComponent implements OnInit {
   // for displaying the quantity of items in shopping cart.
   getQuantity():number {
     if(!this.shoppingCart || !this.shoppingCart.Items) return 0;
-    let item = this.shoppingCart.Items[this.product.$key];
+    let item:ShoppingCartItem = this.shoppingCart.Items[this.product.$key];
     return (item)?(item.quantity):(0);
   }
 
