@@ -15,8 +15,8 @@ position: fixed;
     margin-top:80px;
     margin-left:20px;
 }
-/* eShopButton class is applied to any button with an md-raised-button directive */
-.eShopButton{
+/* change the font-size of every md-button and md-raised-button*/
+.mat-button, .mat-raised-button {
     font-size: 20px;
 }
 

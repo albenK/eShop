@@ -1,5 +1,5 @@
 <p>
-    <a routerLink="/admin/products/new" md-button color="warn" class="eShopButton">New Product</a>
+    <a routerLink="/admin/products/new" md-button color="warn">New Product</a>
 </p>
 
 <!-- wrapper for table -->
@@ -25,7 +25,7 @@
             <td>{{eachProduct.title}}</td>
             <td>${{eachProduct.price}}</td>
             <td>
-                <a [routerLink]="['/admin/products/', eachProduct.$key]" md-button color="warn" class="eShopButton">Edit</a>
+                <a [routerLink]="['/admin/products/', eachProduct.$key]" md-button color="warn">Edit</a>
             </td>
         </tr>
     </table>
