@@ -70,11 +70,13 @@ export class ShoppingCartService {
     /* take(1) gets only the first emmited value and unsubscribes. We then update
      the items in the shopping cart*/
     item$.take(1).subscribe((item) => {
-      item$.update({
+      let quantity = (item.quantity || 0) + addOrRemove;
+      if(quantity === 0) item$.remove();
+      else item$.update({
         title:product.title,
         price:product.price,
         imageUrl:product.imageUrl,
-        quantity:(item.quantity || 0) + addOrRemove
+        quantity:quantity
       });
     });
   }
