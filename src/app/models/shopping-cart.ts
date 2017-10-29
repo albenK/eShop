@@ -32,4 +32,12 @@ export class ShoppingCart {
         return totalNumberOfItems;
     }
 
+    getTotalPrice():number {
+        let totalPrice:number = 0;
+        this.items.forEach((item:ShoppingCartItem) => {
+            totalPrice += item.getTotalPrice();
+        });
+        return totalPrice;
+    }
+
 }
