@@ -8,6 +8,7 @@
         <table mdSort>
             <thead>
                 <tr>
+                    <th></th>
                     <th md-sort-header="product">Product</th>
                     <th md-sort-header="quantity">Quantity</th>
                     <th md-sort-header="price">Price</th>
@@ -16,6 +17,9 @@
     
             <tbody>
                 <tr *ngFor="let eachItem of shoppingCart.items">
+                    <td>
+                        <div [style.backgroundImage]="'url(' + eachItem.imageUrl + ')'" class="itemThumbnail"></div>
+                    </td>
                     <td>{{eachItem.title}}</td>
                     <td>
                         <product-quantity
@@ -29,6 +33,7 @@
             <br>
             <tfoot>
                 <tr>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td class="totalPrice">
