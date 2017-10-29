@@ -1,1 +1,27 @@
-<p>Shopping cart works!</p>
+<h1>Shopping Cart</h1>
+
+<ng-container *ngIf="shoppingCart$ |async as shoppingCart">
+    <p>You have {{shoppingCart.getTotalNumberOfItems()}} items in your shopping cart.</p>
+    
+    <div class="tableWrapper mat-elevation-z8">
+        <!-- mdSort directive is here just to apply some css, no sorting!-->
+        <table mdSort>
+            <thead>
+                <tr>
+                    <th md-sort-header="product">Product</th>
+                    <th md-sort-header="quantity">Quantity</th>
+                    <th md-sort-header="price">Price</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                <tr *ngFor="let eachItem of shoppingCart.items">
+                    <td>{{eachItem.product.title}}</td>
+                    <td>{{eachItem.quantity}}</td>
+                    <td>{{eachItem.getTotalPrice()}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</ng-container>

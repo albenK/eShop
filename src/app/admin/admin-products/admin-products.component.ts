@@ -9,7 +9,9 @@ import {MdPaginator} from '@angular/material';
 import {PageEvent} from "@angular/material";
 import {Product} from "../../models/product";
 import {ProductService} from "../../product.service";
+import { ProductsFilterHelper } from "../../products-filter-helper";
 import { Component, ViewChild,ElementRef,OnInit,OnDestroy } from '@angular/core';
+
 /* 
   ABOUT ME: The purpose of this component is to allow an admin to view all of
   the products within the database and enable them to edit any of them.
@@ -22,10 +24,10 @@ import { Component, ViewChild,ElementRef,OnInit,OnDestroy } from '@angular/core'
 export class AdminProductsComponent implements OnInit, OnDestroy {
   private userSearchSubscription:Subscription;
   private productsSubscription:Subscription;
-  private initialPageEvent:PageEvent = {length:0,pageIndex:0,pageSize:5};
   private userSearch:string= "";
   private startAtIndex:number;
   private endAtIndex:number;
+  private productsFilterHelper:ProductsFilterHelper;
   allProducts:Product[] = []; // initial array. We never want to alter this array!!
   filteredProducts:Product[] = this.allProducts; //we will alter filteredProducts for filtering and such!
   @ViewChild("userSearchInput") private userSearchInput:ElementRef;
@@ -34,8 +36,10 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   constructor(private productService:ProductService) { }
 
   ngOnInit() {
+    this.productsFilterHelper = new ProductsFilterHelper(this.paginator);
     this.productsSubscription = this.productService.getAllProductsFromDatabase().subscribe((products:Product[]) => {
       this.allProducts = products.slice();
+      this.productsFilterHelper.initializeAllProducts(this.allProducts);
       this.filterProducts();
     });
 
@@ -53,40 +57,15 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   }
 
   filterProducts() {
-    //filter based on user search
-    const tempProducts:Product[] = this.allProducts.filter((eachProduct:Product) => {
-      //user can search by title or price, so we concatenate those.
-      const searchString:string = (eachProduct.title+eachProduct.price).toLowerCase();
-      return searchString.indexOf(this.userSearch) != -1;
-    });
-    //set up indeces to grab the correct number of products based on page.
-    this.startAtIndex = this.paginator.pageIndex * this.paginator.pageSize;
-    this.endAtIndex = this.startAtIndex + (this.paginator.pageSize - 1);
-    
-    //filter based on indeces..
-    this.filteredProducts = tempProducts.filter((eachProduct:Product,index:number) => {
-      return index >= this.startAtIndex && index <= this.endAtIndex;
-    });
+    this.filteredProducts = this.productsFilterHelper.getFilteredProducts(this.userSearch);
   }
 
   //---- For sorting based on Title or Price ----
   sortData(sort:Sort){
+    if(!sort.active || sort.direction == "") return;
     const data:Product[] = this.filteredProducts;
-    if(!sort.active || sort.direction == ""){
-      //this.filteredProducts = data;
-      return;
-    }
-    this.filteredProducts = data.sort((a:Product,b:Product) => {
-      let isAsc:boolean = sort.direction == "asc";
-      switch(sort.active){
-        case "title": return this.compare(a.title,b.title,isAsc);
-        case "price": return this.compare(a.price,b.price,isAsc);
-        default:return 0;
-      }
-    });
+    this.filteredProducts = this.productsFilterHelper.getSortedProducts(sort,data);
   }
 
-  private compare(productA:string|number,productB:string|number,isAsc:boolean):number {
-    return (productA < productB ? -1 : 1) * (isAsc ? 1 : -1);
-  }
+  
 }

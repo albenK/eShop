@@ -1,11 +1,14 @@
 import { Product } from "./product";
 
 /*
-    ABOUT ME: The purpose of this interface is to define some typing for a shopping cart item
+    ABOUT ME: The purpose of this class is to define some typing for a shopping cart item
     and what properties it has. 
 */
 
-export interface ShoppingCartItem {
-    product:Product,
-    quantity:number;
+export class ShoppingCartItem {
+    constructor(public product:Product,public quantity:number) {}
+    
+    getTotalPrice():number {
+        return this.product.price * this.quantity;
+    }
 }

@@ -18,6 +18,17 @@ position: fixed;
 .eShopButton{
     font-size: 20px;
 }
+
+.tableWrapper {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    max-width: 800px;
+}
+table{
+    width:100%;
+}
+
 /* mat-card class is applied automatically to all md-card throughout app*/
 .mat-card{
     max-width:500px;
