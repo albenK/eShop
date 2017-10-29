@@ -5,15 +5,15 @@
         <p>{{product.price | currency:'USD':true}}</p>
 
         <!-- Card Footer-->
-        <md-card-actions *ngIf="showActionButtons">
-            <button *ngIf="getQuantity() === 0; else updateQuantity" (click)="addToShoppingCart()" md-raised-button color="primary" 
+        <md-card-actions *ngIf="showActionButtons && shoppingCart">
+            <button *ngIf="shoppingCart.getQuantity(product) === 0; else updateQuantity" (click)="addToShoppingCart()" md-raised-button color="primary" 
             class="eShopButton addToCartButton">Add to Cart</button>
             <ng-template #updateQuantity>
-                <div class="quantityUpdate">
-                    <button (click)="removeFromShoppingCart()" class="plusMinusButtons" style="float:left" md-raised-button color="primary">-</button>
-                    <span class="productQuantity">{{getQuantity()}} in cart</span>
-                    <button (click)="addToShoppingCart()" class="plusMinusButtons" style="float:right" md-raised-button color="primary">+</button>
-                </div>
+                <product-quantity
+                    [product]="product"
+                    [shoppingCart]="shoppingCart"
+                    [showActionButtons]="showActionButtons">
+                </product-quantity>
             </ng-template>
         </md-card-actions>
     </md-card-content>

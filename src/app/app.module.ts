@@ -36,6 +36,7 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 const routes:Routes = [
   {path:"",component:ProductsComponent},
@@ -89,7 +90,8 @@ const routes:Routes = [
     LoginComponent,
     PageNotFoundComponent,
     ProductFilterComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ProductQuantityComponent
   ],
   imports: [
     BrowserModule,

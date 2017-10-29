@@ -1,0 +1,13 @@
+.quantityUpdate {
+    width:100%;
+    display:inline;
+}
+
+.productQuantity {
+    margin-left: 40px;
+    margin-right: 20px;
+}
+
+.plusMinusButtons {
+    min-width: 5px;
+}

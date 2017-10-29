@@ -1,4 +1,5 @@
 import { ShoppingCartItem } from "./shopping-cart-item";
+import { Product } from "./product";
 
 /* 
     ABOUT ME: The purpose of this class is to provide some logic for a shopping cart
@@ -19,6 +20,12 @@ export class ShoppingCart {
             let shoppingCartItem:ShoppingCartItem = new ShoppingCartItem(item.product,item.quantity);
             this.items.push(shoppingCartItem);
         }
+    }
+
+    // for displaying the quantity of an item thats within shopping cart.
+    getQuantity(product:Product):number {
+        let item = this.itemsMap[product.$key];
+        return (item)?(item.quantity):(0);
     }
 
     //TODO: Fix localStorage issue with shopping cart
