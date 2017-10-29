@@ -1,6 +1,7 @@
 .quantityUpdate {
     width:100%;
-    display:inline;
+    display:flex;
+    flex-direction: row;
 }
 
 .productQuantity {

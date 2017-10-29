@@ -21,9 +21,7 @@ position: fixed;
 }
 
 .tableWrapper {
-    display: flex;
-    flex-direction: column;
-    min-width: 200px;
+    min-width: 320px;
     max-width: 800px;
 }
 table{
