@@ -50,7 +50,7 @@ export class ShoppingCartService {
     this.updateItemQuantity(product,1);
   }
 
-  async removeFromShoppingCartInDatabase(product:Product):Promise<void> {
+  async removeOneFromShoppingCartInDatabase(product:Product):Promise<void> {
     this.updateItemQuantity(product,-1);
   }
 
@@ -65,7 +65,12 @@ export class ShoppingCartService {
     /* take(1) gets only the first emmited value and unsubscribes. We then update
      the items in the shopping cart*/
     item$.take(1).subscribe((item) => {
-      item$.update({product:product,quantity:(item.quantity || 0) + addOrRemove});
+      item$.update({
+        title:product.title,
+        price:product.price,
+        imageUrl:product.imageUrl,
+        quantity:(item.quantity || 0) + addOrRemove
+      });
     });
   }
 

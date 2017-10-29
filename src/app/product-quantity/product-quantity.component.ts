@@ -12,7 +12,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProductQuantityComponent implements OnInit {
   @Input("product") product:Product;
   @Input("shoppingCart") shoppingCart:ShoppingCart;
-  @Input("showActionButtons") showActionButtons:boolean = false;
   constructor(private shoppingCartService:ShoppingCartService) { }
 
   ngOnInit() {
@@ -22,8 +21,8 @@ export class ProductQuantityComponent implements OnInit {
     this.shoppingCartService.addToShoppingCartInDatabase(this.product);
   }
 
-  removeFromShoppingCart() {
-    this.shoppingCartService.removeFromShoppingCartInDatabase(this.product);
+  removeOneFromShoppingCart() {
+    this.shoppingCartService.removeOneFromShoppingCartInDatabase(this.product);
   }
 
 }

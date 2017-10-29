@@ -9,7 +9,9 @@ import { Product } from "./product";
 export class ShoppingCart {
     items:ShoppingCartItem[];//represents items in shopping cart.
     constructor(public itemsMap:{[productId:string]:ShoppingCartItem},public dateCreated:Date) {
-        //we need to initialize items array, so we can use this in other components.
+        this.itemsMap = itemsMap || {};
+        /*we need to initialize items array, so we can use this in other components.
+        helps with *ngFor directive. */
         this.initializeItemsArray();
     }
 
@@ -17,7 +19,10 @@ export class ShoppingCart {
         this.items = [];
         for(let eachProductId in this.itemsMap) {
             let item = this.itemsMap[eachProductId];
-            let shoppingCartItem:ShoppingCartItem = new ShoppingCartItem(item.product,item.quantity);
+            let shoppingCartItem:ShoppingCartItem = new ShoppingCartItem();
+            //Object.assign() copies all properties from item to shoppingCartItem.
+            Object.assign(shoppingCartItem,item); 
+            shoppingCartItem.$key = eachProductId;
             this.items.push(shoppingCartItem);
         }
     }

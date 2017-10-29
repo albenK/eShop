@@ -16,8 +16,13 @@
     
             <tbody>
                 <tr *ngFor="let eachItem of shoppingCart.items">
-                    <td>{{eachItem.product.title}}</td>
-                    <td>{{eachItem.quantity}}</td>
+                    <td>{{eachItem.title}}</td>
+                    <td>
+                        <product-quantity
+                            [product]="eachItem"
+                            [shoppingCart]="shoppingCart">
+                        </product-quantity>
+                    </td>
                     <td>{{eachItem.getTotalPrice() | currency:"USD":true}}</td>
                 </tr>
             </tbody>

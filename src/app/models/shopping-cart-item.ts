@@ -6,10 +6,15 @@ import { Product } from "./product";
 */
 
 export class ShoppingCartItem {
-    constructor(public product:Product,public quantity:number) {}
+    $key:string;
+    title:string;
+    price:number;
+    imageUrl:string;
+    quantity:number;
+    
     
     //get price based on quantity and price per item.
     getTotalPrice():number {
-        return this.product.price * this.quantity;
+        return this.price * this.quantity;
     }
 }
