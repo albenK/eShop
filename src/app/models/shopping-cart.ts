@@ -18,11 +18,11 @@ export class ShoppingCart {
     private initializeItemsArray() {
         this.items = [];
         for(let eachProductId in this.itemsMap) {
-            let item = this.itemsMap[eachProductId];
-            let shoppingCartItem:ShoppingCartItem = new ShoppingCartItem();
-            //Object.assign() copies all properties from item to shoppingCartItem.
-            Object.assign(shoppingCartItem,item); 
-            shoppingCartItem.$key = eachProductId;
+            const item = this.itemsMap[eachProductId];
+            const shoppingCartItem:ShoppingCartItem = new ShoppingCartItem({
+                ...item,//copies all of the properties of item into this object.
+                $key:eachProductId
+            });
             this.items.push(shoppingCartItem);
         }
     }
