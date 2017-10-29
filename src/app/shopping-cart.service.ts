@@ -15,11 +15,6 @@ export class ShoppingCartService {
     this.shoppingCartCollection = "/ShoppingCarts";
   }
 
-  private createNewShoppingCartInDatabase():firebase.Promise<Object> {
-    const newShoppingCart = {dateCreated:new Date().getTime()};
-    return this.angularFireDatabase.list(this.shoppingCartCollection).push(newShoppingCart);
-  }
-  
   //async means we  HAVE to return a promise
   async getShoppingCartFromDatabase():Promise<Observable<ShoppingCart>> {
     const cartId:string = await this.getOrCreateShoppingCartId();
@@ -27,6 +22,24 @@ export class ShoppingCartService {
     .map(cart => new ShoppingCart(cart.Items,cart.dateCreated));
   }
 
+  async addToShoppingCartInDatabase(product:Product):Promise<void> {
+    this.updateItemQuantity(product,1);
+  }
+
+  async removeOneFromShoppingCartInDatabase(product:Product):Promise<void> {
+    this.updateItemQuantity(product,-1);
+  }
+
+  async clearShoppingCart():Promise<void> {
+    let cartId = await this.getOrCreateShoppingCartId();
+    this.angularFireDatabase.object(this.shoppingCartCollection+"/"+cartId+"/Items").remove();
+  }
+
+  private createNewShoppingCartInDatabase():firebase.Promise<Object> {
+    const newShoppingCart = {dateCreated:new Date().getTime()};
+    return this.angularFireDatabase.list(this.shoppingCartCollection).push(newShoppingCart);
+  }
+  
   //async means we  HAVE to return a promise
   private async getOrCreateShoppingCartId():Promise<string> {
     let shoppingCartId:string = localStorage.getItem("shoppingCartId");
@@ -44,14 +57,6 @@ export class ShoppingCartService {
 
   private getItemReference(cartId:string,productId:string):FirebaseObjectObservable<ShoppingCartItem> {
     return this.angularFireDatabase.object(this.shoppingCartCollection+"/"+cartId+"/Items/"+productId);
-  }
-
-  async addToShoppingCartInDatabase(product:Product):Promise<void> {
-    this.updateItemQuantity(product,1);
-  }
-
-  async removeOneFromShoppingCartInDatabase(product:Product):Promise<void> {
-    this.updateItemQuantity(product,-1);
   }
 
   /*async means we return a Promise. We pass in the product that the user wants to
