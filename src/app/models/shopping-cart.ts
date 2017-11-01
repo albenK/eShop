@@ -8,8 +8,9 @@ import { Product } from "./product";
 */
 export class ShoppingCart {
     items:ShoppingCartItem[];//represents items in shopping cart.
-    constructor(public itemsMap:{[productId:string]:ShoppingCartItem},public dateCreated:Date) {
+    constructor(private itemsMap:{[productId:string]:ShoppingCartItem},public dateCreated:number) {
         this.itemsMap = itemsMap || {};
+        this.dateCreated = dateCreated || new Date().getTime();
         /*we need to initialize items array, so we can use this in other components.
         helps with *ngFor directive. */
         this.initializeItemsArray();
@@ -44,6 +45,9 @@ export class ShoppingCart {
         return totalNumberOfItems;
     }
 
+    /*getTotalPrice() returns the total price that user has to pay.
+    We use this in the shopping-cart.component.ts file and wherever else
+    necessary.*/
     getTotalPrice():number {
         let totalPrice:number = 0;
         this.items.forEach((item:ShoppingCartItem) => {

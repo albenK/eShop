@@ -11,7 +11,7 @@ export class ShoppingCartItem {
     price:number;
     imageUrl:string;
     quantity:number;
-    /* Partial is a built in TypeScript class. This means we can pass in an object that
+    /* Partial is a built in TypeScript class. Partial means we can pass in an object that
         LOOKS like a ShoppingCartItem type.
     */
     constructor(init?:Partial<ShoppingCartItem>) {
