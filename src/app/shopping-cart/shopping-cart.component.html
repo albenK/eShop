@@ -1,7 +1,13 @@
 <h1>Shopping Cart</h1>
 
 <ng-container *ngIf="shoppingCart$ |async as shoppingCart">
-    <p>You have {{shoppingCart.getTotalNumberOfItems()}} items in your shopping cart.</p>
+    <p>
+        You have {{shoppingCart.getTotalNumberOfItems()}} items in your shopping cart.
+        <button *ngIf="shoppingCart.items.length > 0" 
+            (click)="clearShoppingCart()" 
+            md-button color="accent"
+        >Clear Shopping Cart</button>
+    </p>
     
     <div class="tableWrapper mat-elevation-z8">
         <!-- mdSort directive is here just to apply some css, no sorting!-->
@@ -44,5 +50,10 @@
         </table>
     </div>
     <br>
-    <button (click)="clearShoppingCart()" md-raised-button color="accent">Clear Shopping Cart</button>
+    <a 
+        *ngIf="shoppingCart.items.length > 0"
+        routerLink="/check-out"  
+        md-raised-button 
+        color="accent"
+    >Check Out</a>
 </ng-container>
