@@ -1,7 +1,11 @@
 import { Product } from "./models/product";
 import { MdPaginator, Sort } from "@angular/material";
 
-
+/* 
+    ABOUT ME: The purpose of this class is to define some methods that will
+    help us when filtering and sorting products within the admin-products.component.ts
+    file.
+*/
 export class ProductsFilterHelper {
     private allProducts:Product[] = [];
     private paginator:MdPaginator;
@@ -30,7 +34,7 @@ export class ProductsFilterHelper {
     getFilteredProducts(userSearch:string):Product[] {
         //filter based on user search
         const tempProducts:Product[] = this.allProducts.filter((eachProduct:Product) => {
-            //user can search by title or price, so we concatenate those.
+            //admin can search by title or price, so we concatenate those.
             const searchString:string = (eachProduct.title+eachProduct.price).toLowerCase();
             return searchString.indexOf(userSearch) != -1;
         });

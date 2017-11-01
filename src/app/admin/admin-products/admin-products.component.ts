@@ -13,8 +13,8 @@ import { ProductsFilterHelper } from "../../products-filter-helper";
 import { Component, ViewChild,ElementRef,OnInit,OnDestroy } from '@angular/core';
 
 /* 
-  ABOUT ME: The purpose of this component is to allow an admin to view all of
-  the products within the database and enable them to edit any of them.
+  ABOUT ME: The purpose of this component is to allow an admin to create a product and
+  view all of the products within the database and enable them to edit any of them.
 */
 @Component({
   selector: 'app-admin-products',
