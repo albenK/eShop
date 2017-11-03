@@ -1,1 +1,38 @@
-<p>Check Out works!</p>
+<md-card>
+    <md-card-header>Shipping</md-card-header>
+    <br>
+
+    <!-- Check Out Form HTML -->
+    <md-card-content>
+        <form #theCheckOutForm="ngForm" (ngSubmit)="placeOrder($event)">
+            <md-form-field color="warn">
+                <input #fullName="ngModel" [(ngModel)]="checkOutForm.fullName" name="fullName" type="text" mdInput required placeholder="Full Name"/>
+            </md-form-field>
+
+            <div *ngIf="fullName.touched && fullName.invalid" class="errorMessage">Full Name is required!<br><br></div>
+
+            <md-form-field color="warn">
+                <input #addressLineOne="ngModel" [(ngModel)]="checkOutForm.addressLineOne" name="addressLineOne" type="text" mdInput required placeholder="Address Line 1"/>
+            </md-form-field>
+
+            <div *ngIf="addressLineOne.touched && addressLineOne.invalid" class="errorMessage">Address is required!<br><br></div>
+
+            <md-form-field color="warn">
+                <input #addressLineTwo="ngModel" [(ngModel)]="checkOutForm.addressLineTwo" name="addressLineTwo" type="text" mdInput required placeholder="Address (Apt #)"/>
+            </md-form-field>
+
+            <div *ngIf="addressLineTwo.touched && addressLineTwo.invalid" class="errorMessage">Apartment number is required!<br><br></div>
+
+            <md-form-field color="warn">
+                <input #city="ngModel" [(ngModel)]="checkOutForm.city" name="city" type="text" mdInput required placeholder="City"/>
+            </md-form-field>
+
+            <div *ngIf="city.touched && city.invalid" class="errorMessage">City is required!<br><br></div>
+
+            <md-card-actions>
+                <button [disabled]="!theCheckOutForm.valid" md-raised-button color="accent">Place Order</button>
+            </md-card-actions>
+        </form>
+    </md-card-content>
+
+</md-card>

@@ -16,7 +16,7 @@
       <md-card-header>{{formDisplayName}}</md-card-header>
       <br>
       <md-card-content>
-        <form #addProductForm="ngForm" (ngSubmit)="onSubmit($event,addProductForm.value)">
+        <form #addProductForm="ngForm" (ngSubmit)="onSubmit($event)">
           <md-form-field color="warn">
             <input #title="ngModel" [(ngModel)]="product.title" name="title" type="text" mdInput required placeholder="Title"/>
           </md-form-field>

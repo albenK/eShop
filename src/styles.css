@@ -21,6 +21,12 @@ position: fixed;
         margin-left: 0px;
     }
 }
+
+/* errorMessage class is applied to any div element for form validation errors*/
+.errorMessage{
+    color:#ff0000;
+    font-size: 16px;
+}
 /* change the font-size of every md-button and md-raised-button*/
 .mat-button, .mat-raised-button {
     font-size: 20px;

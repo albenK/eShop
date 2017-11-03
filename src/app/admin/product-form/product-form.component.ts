@@ -48,11 +48,11 @@ export class ProductFormComponent implements OnInit {
     } 
   }
 
-  onSubmit(event,product:Product){
+  onSubmit(event){
     event.preventDefault();
     // if idFromUrl exists, then we know user is trying to edit product.
-    if(this.idFromUrl) this.productService.updateProductInDatabase(this.idFromUrl,product);
-    else this.productService.addNewProductToDatabase(product);
+    if(this.idFromUrl) this.productService.updateProductInDatabase(this.idFromUrl,this.product);
+    else this.productService.addNewProductToDatabase(this.product);
     this.router.navigate(["/admin/products"]);
   }
 
@@ -62,7 +62,7 @@ export class ProductFormComponent implements OnInit {
 
   deleteProduct(){
     if(!confirm("Are you sure you want to delete this product?")) return;
-    //TODO: implement Angular-Materia; modal here!!
+    //TODO: implement Angular-Material modal here!!
     this.productService.deleteProductInDatabase(this.idFromUrl);
     this.router.navigate(["/admin/products"]);
   }
