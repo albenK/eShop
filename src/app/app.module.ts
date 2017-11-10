@@ -54,7 +54,7 @@ const routes:Routes = [
 
   {path:"my/orders",component:MyOrdersComponent, canActivate:[AuthGuardService]},
   {path:"check-out",component:CheckOutComponent, canActivate:[AuthGuardService]},
-  {path:"order-success",component:OrderSuccessComponent,canActivate:[AuthGuardService]},
+  {path:"order-success/:id",component:OrderSuccessComponent,canActivate:[AuthGuardService]},
 
   {
     path:"admin/products/new",

@@ -12,9 +12,9 @@ export class Order {
     items:OrderItem[];
     constructor(public userId:string,public shipping:Shipping,shoppingCart:ShoppingCart) {
         this.datePlaced = new Date().getTime();
-        this.setupOrderItems(shoppingCart);
+        this.setupOrderItems(shoppingCart); // initialize this.items
     }
-    // TODO: FIX SHOPPING CART BUG WHERE QUANTITY DOESN"T DISPLAY PROPERLY
+
     private setupOrderItems(cart:ShoppingCart) {
         this.items = cart.items.map((eachItem) => {
             return {
