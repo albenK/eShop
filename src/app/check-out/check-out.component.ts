@@ -34,7 +34,7 @@ export class CheckOutComponent implements OnInit,OnDestroy {
     this.userIdSubscription.unsubscribe();
   }
   
-  async placeOrder(event:Event):Promise<void> {
+  placeOrder(event:Event) {
     event.preventDefault();
     let order:Order = new Order(this.userId,this.shipping,this.shoppingCart);
     this.orderService.storeOrderInDatabase(order)
