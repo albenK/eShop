@@ -1,7 +1,9 @@
 import { Product } from '../models/product';
+import { ShoppingCartItem } from '../models/shopping-cart-item';
 import { ShoppingCartService } from '../shopping-cart.service';
 import { ShoppingCart } from '../models/shopping-cart';
 import { Component, OnInit, Input } from '@angular/core';
+
 
 
 @Component({
@@ -10,7 +12,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./product-quantity.component.css']
 })
 export class ProductQuantityComponent implements OnInit {
-  @Input("product") product:Product;
+  @Input("product") product:Product|ShoppingCartItem;
   @Input("shoppingCart") shoppingCart:ShoppingCart;
   constructor(private shoppingCartService:ShoppingCartService) { }
 

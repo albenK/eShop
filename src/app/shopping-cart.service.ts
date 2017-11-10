@@ -22,11 +22,11 @@ export class ShoppingCartService {
     .map(cart => new ShoppingCart(cart.Items,cart.dateCreated));
   }
 
-  async addToShoppingCartInDatabase(product:Product):Promise<void> {
+  async addToShoppingCartInDatabase(product:Product|ShoppingCartItem):Promise<void> {
     this.updateItemQuantity(product,1);
   }
 
-  async removeOneFromShoppingCartInDatabase(product:Product):Promise<void> {
+  async removeOneFromShoppingCartInDatabase(product:Product|ShoppingCartItem):Promise<void> {
     this.updateItemQuantity(product,-1);
   }
 
@@ -63,10 +63,11 @@ export class ShoppingCartService {
   update the quantity of. addOrRemove can be 1 or -1. 1 means user wants to add one. -1 means 
   remove one.
   */
-  private async updateItemQuantity(product:Product,addOrRemove:number):Promise<void> {
+  private async updateItemQuantity(product:Product|ShoppingCartItem,addOrRemove:number):Promise<void> {
     //we await until this promise is done and get the value.
     let cartId:string = await this.getOrCreateShoppingCartId();
-    let item$:FirebaseObjectObservable<ShoppingCartItem> = this.getItemReference(cartId,product.$key);
+    const idOfProduct:string = (product instanceof ShoppingCartItem)?(product.itemId):(product.$key);
+    let item$:FirebaseObjectObservable<ShoppingCartItem> = this.getItemReference(cartId,idOfProduct);
     /* take(1) gets only the first emmited value and unsubscribes. We then update
      the items in the shopping cart*/
     item$.take(1).subscribe((item) => {
