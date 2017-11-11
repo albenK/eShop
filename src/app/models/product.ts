@@ -3,7 +3,7 @@
     and what properties it has. This is used to provide some typing for a product.
 */
 export interface Product {
-    $key:string;//refers to firebase generated id.
+    $key?:string;//refers to firebase generated id.
     title:string;
     price:number;
     category:string;

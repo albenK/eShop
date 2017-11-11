@@ -1,4 +1,4 @@
-<md-toolbar color="warn">
+<md-toolbar color="primary">
   <button routerLink="/" md-button class="appToolbarButton">E</button>
   
   <button routerLink="/shopping-cart" md-icon-button>
@@ -7,8 +7,9 @@
 
   <!-- Shopping cart badge-->
   <md-chip *ngIf="shoppingCart$ | async as shoppingCart" 
-    class="shoppingCartBadge">{{shoppingCart.getTotalNumberOfItems()}}
+    selected="true" color="accent" class="shoppingCartBadge">{{shoppingCart.getTotalNumberOfItems()}}
   </md-chip>
+
   <span class="someSpace"></span>
   
   <md-menu #dropDownMenu> <!-- TODO: use ngFor to display links once routing is set up-->

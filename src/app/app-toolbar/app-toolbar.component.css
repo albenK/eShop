@@ -9,14 +9,12 @@
 /* appToolbarButton class is to be applied for any button within the toolbar with 
 "md-button" directive */
 .appToolbarButton{ 
-    font-size: 20px;
     min-width:0px;
 }
 
 .shoppingCartBadge {
-    width:20px;
+    width:auto;
     border-radius: 10px;
     font-size: 20px;
     text-align: center;
-    background-color: #00ccff;
 }

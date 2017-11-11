@@ -17,13 +17,13 @@
       <br>
       <md-card-content>
         <form #addProductForm="ngForm" (ngSubmit)="onSubmit($event)">
-          <md-form-field color="warn">
+          <md-form-field color="accent">
             <input #title="ngModel" [(ngModel)]="product.title" name="title" type="text" mdInput required placeholder="Title"/>
           </md-form-field>
     
           <div *ngIf="title.touched && title.invalid" class="errorMessage">Title is required!<br><br></div>
           
-          <md-form-field color="warn">
+          <md-form-field color="accent">
             <input #price="ngModel" [(ngModel)]="product.price" name="price" type="number" mdInput required placeholder="Price ($)" [min]="0"/>
           </md-form-field>
           
@@ -33,7 +33,7 @@
             <br><br>
           </div>
     
-          <md-select #category="ngModel" [(ngModel)]="product.category" name="category" color="warn" required placeholder="Category">
+          <md-select #category="ngModel" [(ngModel)]="product.category" name="category" color="accent" required placeholder="Category">
             <md-option *ngFor="let eachCategory of categories$ | async" [value]="eachCategory.$key">
               {{eachCategory.name}}
             </md-option>
@@ -42,7 +42,7 @@
     
           <div *ngIf="category.touched && category.invalid" class="errorMessage">Category is required!<br><br></div>
           
-          <md-form-field color="warn">
+          <md-form-field color="accent">
             <input #imageUrl="ngModel" [(ngModel)]="product.imageUrl" name="imageUrl" type="text" mdInput required placeholder="Image URL" url/>
           </md-form-field>
           
@@ -53,7 +53,7 @@
           </div>
     
           <md-card-actions>
-            <button [disabled]="!addProductForm.valid" md-button color="warn">{{submitButtonDisplay}}</button>
+            <button [disabled]="!addProductForm.valid" md-button color="accent">{{submitButtonDisplay}}</button>
           </md-card-actions>
         </form>
       </md-card-content>

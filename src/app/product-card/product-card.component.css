@@ -9,8 +9,9 @@
 }
 
 /* make the Add to Cart button width 100%*/
-.addToCartButton {
+.addToCartButton {  
     width: 100%;
+    background-color:#acacac;
 }
 
 .quantityUpdate {

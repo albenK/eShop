@@ -1,5 +1,5 @@
 <p>
-    <a routerLink="/admin/products/new" md-button color="warn">New Product</a>
+    <a routerLink="/admin/products/new" md-raised-button color="accent">Add new product</a>
 </p>
 
 <!-- wrapper for table -->
@@ -7,7 +7,7 @@
 
     <!-- user search -->
     <div class="userSearch">
-        <md-form-field color="warn">
+        <md-form-field color="accent">
             <input #userSearchInput mdInput placeholder="Search..."/>
         </md-form-field>
     </div>
@@ -25,7 +25,7 @@
             <td>{{eachProduct.title}}</td>
             <td>${{eachProduct.price}}</td>
             <td>
-                <a [routerLink]="['/admin/products/', eachProduct.$key]" md-button color="warn">Edit</a>
+                <a [routerLink]="['/admin/products/', eachProduct.$key]" md-button color="accent">Edit</a>
             </td>
         </tr>
     </table>
