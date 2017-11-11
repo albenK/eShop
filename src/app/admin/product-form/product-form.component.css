@@ -1,17 +1,5 @@
-
-
-/* Some simple css for properly displaying on mobile screens*/
-.groupItems{
-  /* width:500px; */
-  display:inline-block;
-}
 .deleteButton{
   float:right;
 }
-/* when screen width is less than 1000px*/
-@media(max-width:1000px){
-  .groupItems{
-    width:100%;
-    margin-top:10px;
-  }
-}
+
+

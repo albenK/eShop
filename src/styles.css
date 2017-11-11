@@ -22,6 +22,19 @@ position: fixed;
     }
 }
 
+/* Some simple css for properly displaying on mobile screens*/
+.groupItems {
+    display:inline-block;
+}
+  
+/* when screen width is less than 1000px*/
+@media(max-width:1000px) {
+    .groupItems{
+      width:100%;
+      margin-top:10px;
+    }
+}
+
 /* errorMessage class is applied to any div element for form validation errors*/
 .errorMessage{
     color:#ff0000;

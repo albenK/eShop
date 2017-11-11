@@ -14,7 +14,7 @@ export class OrderService {
   constructor(private angularFireDatabase:AngularFireDatabase,
   private shoppingCartService:ShoppingCartService) {
     this.ordersCollection = "/Orders";
-   }
+  }
 
   storeOrderInDatabase(order:Order):firebase.Promise<any> {
     return this.angularFireDatabase.list(this.ordersCollection).push(order)

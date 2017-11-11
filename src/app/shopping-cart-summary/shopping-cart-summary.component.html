@@ -1,0 +1,17 @@
+<div *ngIf="shoppingCart" class="tableWrapper mat-elevation-z8">
+  <h3>Order Summary</h3>
+  <p>You have {{shoppingCart.getTotalNumberOfItems()}} items in your shopping cart.</p>
+  
+  <!-- mdSort directive is applied here for css reasons only!-->
+  <table mdSort>
+    <tr *ngFor="let eachItem of shoppingCart.items; let i = index">
+      <td md-sort-header="{{'title'+i}}">{{eachItem.quantity+" x "+eachItem.title}}</td>
+      <td md-sort-header="{{'price'+i}}">{{eachItem.getTotalPrice() | currency:'USD':true}}</td>
+    </tr>
+    <br>
+    <tr>
+      <td></td>
+      <td>Total:{{shoppingCart.getTotalPrice() | currency:'USD':true}}</td>
+    </tr>
+  </table>
+</div>
