@@ -1,46 +1,58 @@
-<div class="groupItems">
-    <md-card>
-        <md-card-header>Shipping</md-card-header>
-        <br>
-            
-        <!-- Check Out Form HTML -->
-        <md-card-content>
-            <form #checkOutForm="ngForm" (ngSubmit)="placeOrder($event)">
-                <md-form-field color="warn">
-                    <input #fullName="ngModel" [(ngModel)]="shipping.fullName" name="fullName" type="text" mdInput required placeholder="Full Name"/>
-                </md-form-field>
-            
-                <div *ngIf="fullName.touched && fullName.invalid" class="errorMessage">Full Name is required!<br><br></div>
-            
-                <md-form-field color="warn">
-                    <input #addressLineOne="ngModel" [(ngModel)]="shipping.addressLineOne" name="addressLineOne" type="text" mdInput required placeholder="Address Line 1"/>
-                </md-form-field>
-            
-                <div *ngIf="addressLineOne.touched && addressLineOne.invalid" class="errorMessage">Address is required!<br><br></div>
-            
-                <md-form-field color="warn">
-                    <input #addressLineTwo="ngModel" [(ngModel)]="shipping.addressLineTwo" name="addressLineTwo" type="text" mdInput required placeholder="Address (Apt #)"/>
-                </md-form-field>
-            
-                <div *ngIf="addressLineTwo.touched && addressLineTwo.invalid" class="errorMessage">Apartment number is required!<br><br></div>
-            
-                <md-form-field color="warn">
-                    <input #city="ngModel" [(ngModel)]="shipping.city" name="city" type="text" mdInput required placeholder="City"/>
-                </md-form-field>
-            
-                <div *ngIf="city.touched && city.invalid" class="errorMessage">City is required!<br><br></div>
-                <br>
-                <p class="warningMessage">*please review order summary before placing your order</p>
-                <md-card-actions>
-                    <button [disabled]="!checkOutForm.valid" md-raised-button color="accent">Place Order</button>
-                </md-card-actions>
-            </form>
-        </md-card-content>
-    </md-card>
-</div>
+<ng-container *ngIf="shoppingCart && shoppingCart.items.length > 0; else noItemsToDisplay">
+        <div class="groupItems">
+                <md-card>
+                    <md-card-header>Shipping</md-card-header>
+                    <br>
+                        
+                    <!-- Check Out Form HTML -->
+                    <md-card-content>
+                        <form #checkOutForm="ngForm" (ngSubmit)="placeOrder($event)">
+                            <md-form-field color="warn">
+                                <input #fullName="ngModel" [(ngModel)]="shipping.fullName" name="fullName" type="text" mdInput required placeholder="Full Name"/>
+                            </md-form-field>
+                        
+                            <div *ngIf="fullName.touched && fullName.invalid" class="errorMessage">Full Name is required!<br><br></div>
+                        
+                            <md-form-field color="warn">
+                                <input #addressLineOne="ngModel" [(ngModel)]="shipping.addressLineOne" name="addressLineOne" type="text" mdInput required placeholder="Address Line 1"/>
+                            </md-form-field>
+                        
+                            <div *ngIf="addressLineOne.touched && addressLineOne.invalid" class="errorMessage">Address is required!<br><br></div>
+                        
+                            <md-form-field color="warn">
+                                <input #addressLineTwo="ngModel" [(ngModel)]="shipping.addressLineTwo" name="addressLineTwo" type="text" mdInput required placeholder="Address (Apt #)"/>
+                            </md-form-field>
+                        
+                            <div *ngIf="addressLineTwo.touched && addressLineTwo.invalid" class="errorMessage">Apartment number is required!<br><br></div>
+                        
+                            <md-form-field color="warn">
+                                <input #city="ngModel" [(ngModel)]="shipping.city" name="city" type="text" mdInput required placeholder="City"/>
+                            </md-form-field>
+                        
+                            <div *ngIf="city.touched && city.invalid" class="errorMessage">City is required!<br><br></div>
+                            <br>
+                            <p class="warningMessage">*please review order summary before placing your order</p>
+                            <md-card-actions>
+                                <button [disabled]="!checkOutForm.valid"
+                                    md-raised-button color="accent"
+                                >Place Order</button>
+                            </md-card-actions>
+                        </form>
+                    </md-card-content>
+                </md-card>
+            </div>
 
-<!-- Order Summary-->
-<div class="groupItems">
-    <shopping-cart-summary [shoppingCart]="shoppingCart"></shopping-cart-summary>
-</div>
+    <!-- Order Summary-->
+    <div class="groupItems">
+        <shopping-cart-summary [shoppingCart]="shoppingCart"></shopping-cart-summary>
+    </div>
+
+</ng-container>
+
+<ng-template #noItemsToDisplay>
+    <p>You have no items in your shopping cart.</p>
+</ng-template>
+
+
+
         
