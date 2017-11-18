@@ -10,9 +10,9 @@ import { OrderItem } from "./order-item";
 export class Order {
     datePlaced:number;
     items:OrderItem[];
-    constructor(public userId:string,public shipping:Shipping,shoppingCart:ShoppingCart) {
+    constructor(public idOfUserWhoPlacedOrder:string,public shippingForm:Shipping,shoppingCart:ShoppingCart) {
         this.datePlaced = new Date().getTime();
-        this.setupOrderItems(shoppingCart); // initialize this.items
+        this.setupOrderItems(shoppingCart); // initialize this.items array.
     }
 
     private setupOrderItems(cart:ShoppingCart) {
