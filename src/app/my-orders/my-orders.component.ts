@@ -1,7 +1,9 @@
-import { OrderService } from "../order.service";
-import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/switchMap";
+import { OrderService } from "../order.service";
 import { AuthService } from "../auth.service";
+import { Order } from "../models/order";
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -10,12 +12,13 @@ import { AuthService } from "../auth.service";
   styleUrls: ['./my-orders.component.css']
 })
 export class MyOrdersComponent implements OnInit {
-  orders$:Observable<any>;
+  orders$:Observable<Order[]>;
   constructor(private authService:AuthService,private orderService:OrderService) {}
 
 
   ngOnInit() {
-  
+    this.orders$ = this.authService.user$
+      .switchMap(firebaseUser => this.orderService.getOrdersByUserId(firebaseUser.uid));
   }
 
 }
