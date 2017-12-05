@@ -1,5 +1,5 @@
 import * as firebase from "firebase";
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Order } from "./models/order";
 import { ShoppingCartService } from "./shopping-cart.service";
 import { Injectable } from '@angular/core';
@@ -19,8 +19,23 @@ export class OrderService {
   storeOrderInDatabase(order:Order):firebase.Promise<any> {
     return this.angularFireDatabase.list(this.ordersCollection).push(order)
     .then((reference) => {
-      this.shoppingCartService.clearShoppingCart();
+      // we should clear shopping cart after we place the order.
+      this.shoppingCartService.clearShoppingCart(); 
       return reference;
+    });
+  }
+
+
+  getAllOrders():FirebaseListObservable<Order[]> {
+    return this.angularFireDatabase.list(this.ordersCollection);
+  }
+
+  getOrdersByUserId(userId:string):FirebaseListObservable<Order[]> {
+    return this.angularFireDatabase.list(this.ordersCollection, {
+      query: {
+        orderByChild:"idOfUserWhoPlacedOrder",
+        equalTo:userId
+      }
     });
   }
 

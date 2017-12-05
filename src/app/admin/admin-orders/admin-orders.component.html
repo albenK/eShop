@@ -1,1 +1,22 @@
-<p>Admin Orders works!</p>
+<h1>Manage Orders</h1>
+
+<div class="tableWrapper mat-elevation-z8">
+    <!-- mdSort directive is here just to apply some css, no sorting!-->
+    <table mdSort>
+        <thead>
+            <tr>
+                <th md-sort-header="customer">Customer</th>
+                <th md-sort-header="date">Date</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let eachOrder of orders$ | async">
+                <td>{{eachOrder.shippingForm.fullName}}</td>
+                <td>{{eachOrder.datePlaced | date:"mediumDate"}}</td>
+                <td><a md-button color="accent">View</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
