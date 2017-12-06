@@ -4,7 +4,7 @@ import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/map";
 import "rxjs/add/observable/of";
 import * as firebase from "firebase";
-import {AppUser} from "./models/app-user";
+import {AppUser} from "../models/app-user";
 import {UserService} from "./user.service";
 import {Router,ActivatedRoute} from "@angular/router";
 import { Injectable } from '@angular/core';

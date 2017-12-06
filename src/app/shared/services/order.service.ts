@@ -1,6 +1,6 @@
 import * as firebase from "firebase";
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { Order } from "./models/order";
+import { Order } from "../models/order";
 import { ShoppingCartService } from "./shopping-cart.service";
 import { Injectable } from '@angular/core';
 

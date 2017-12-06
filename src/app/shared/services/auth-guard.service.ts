@@ -1,7 +1,7 @@
 import "rxjs/add/operator/map";
 import {Observable} from "rxjs/Observable";
 import {AuthService} from "./auth.service";
-import {AppUser} from "./models/app-user";
+import {AppUser} from "../models/app-user";
 import {Router,ActivatedRouteSnapshot,RouterStateSnapshot} from "@angular/router";
 import {Injectable} from '@angular/core';
 import {CanActivate} from "@angular/router";

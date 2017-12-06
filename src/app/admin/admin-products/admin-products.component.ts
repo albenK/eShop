@@ -7,9 +7,9 @@ import 'rxjs/add/observable/fromEvent';
 import {Sort} from "@angular/material";
 import {MdPaginator} from '@angular/material';
 import {PageEvent} from "@angular/material";
-import {Product} from "../../models/product";
-import {ProductService} from "../../product.service";
-import { ProductsFilterHelper } from "../../products-filter-helper";
+import {Product} from "../../shared/models/product";
+import {ProductService} from "../../shared/services/product.service";
+import { ProductsFilterHelper } from "../../shared/services/products-filter-helper";
 import { Component, ViewChild,ElementRef,OnInit,OnDestroy } from '@angular/core';
 
 /* 

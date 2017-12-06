@@ -1,6 +1,6 @@
 import {AngularFireDatabase,FirebaseObjectObservable} from "angularfire2/database";
 import * as firebase from "firebase";
-import {AppUser} from "./models/app-user";
+import {AppUser} from "../models/app-user";
 import { Injectable } from '@angular/core';
 
 /* 
@@ -23,7 +23,4 @@ export class UserService {
   getUserInfoFromDatabase(userId:string):FirebaseObjectObservable<AppUser>{
     return this.angularFireDatabase.object(this.userCollection+"/"+userId);
   }
-
-
-
 }

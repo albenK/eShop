@@ -1,6 +1,6 @@
 import * as firebase from "firebase";
 import {AngularFireDatabase,FirebaseListObservable,FirebaseObjectObservable} from "angularfire2/database";
-import {Product} from "./models/product";
+import {Product} from "../models/product";
 import { FirebaseListFactoryOpts } from "angularfire2/database/interfaces";
 import { Injectable } from '@angular/core';
 

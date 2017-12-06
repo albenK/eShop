@@ -3,9 +3,9 @@ import * as firebase from "firebase";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/take";
 import "rxjs/add/operator/map";
-import { Product } from './models/product';
-import { ShoppingCart } from './models/shopping-cart';
-import { ShoppingCartItem } from './models/shopping-cart-item';
+import { Product } from '../models/product';
+import { ShoppingCart } from '../models/shopping-cart';
+import { ShoppingCartItem } from '../models/shopping-cart-item';
 import { Injectable } from '@angular/core';
 
 @Injectable()

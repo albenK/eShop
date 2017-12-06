@@ -1,8 +1,8 @@
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/take';
-import {CategoryService} from "../../category.service";
-import {ProductService} from "../../product.service";
-import {Product} from "../../models/product";
+import {CategoryService} from "../../shared/services/category.service";
+import {ProductService} from "../../shared/services/product.service";
+import {Product} from "../../shared/models/product";
 import {NgForm} from "@angular/forms";
 import {Router,ActivatedRoute} from "@angular/router";
 import { Component, OnInit,ViewChild} from '@angular/core';
