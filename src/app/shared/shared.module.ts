@@ -1,4 +1,4 @@
-import { AngularMaterialModule } from '../angular-material/angular-material.module';
+import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
@@ -20,11 +20,11 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   imports: [
     CommonModule,
-    AngularMaterialModule,
+    AngularMaterialModule
   ],
   declarations: [
     ProductCardComponent,
-    ProductQuantityComponent,
+    ProductQuantityComponent
   ],
   providers:[
     AuthService,
@@ -38,6 +38,7 @@ import { CommonModule } from '@angular/common';
   exports:[
     ProductCardComponent,
     ProductQuantityComponent,
+    AngularMaterialModule
   ],
 })
 export class SharedModule { }

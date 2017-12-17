@@ -1,6 +1,6 @@
-import { OrderService } from '../../shared/services/order.service';
+import { OrderService } from '../../../shared/services/order.service';
 import { Observable } from 'rxjs/Observable';
-import { Order } from '../../shared/models/order';
+import { Order } from '../../../shared/models/order';
 import { Component,OnInit} from '@angular/core';
 
 @Component({
