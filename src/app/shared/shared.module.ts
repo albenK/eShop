@@ -8,18 +8,27 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductQuantityComponent } from './components/product-quantity/product-quantity.component';
+
+import { CustomFormsModule } from 'ng2-validation';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-
+import { FormsModule } from '@angular/forms';
 /* 
-  ABOUT ME: The purpose of this module is to hold shared components
-  and shared services so that we can import this module into other modules
-  that need these components and services. Helps with modularizing the app.
+  ABOUT ME: The purpose of this module is to hold shared components,
+  shared services and shared modules so that we can import this module 
+  into other modules that need these components, services and modules. 
+  Helps with modularizing the app.
 */
 @NgModule({
   imports: [
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
     CommonModule,
+    FormsModule,
+    CustomFormsModule,
     AngularMaterialModule
   ],
   declarations: [
@@ -36,8 +45,14 @@ import { CommonModule } from '@angular/common';
     OrderService
   ],
   exports:[
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    CommonModule,
+    FormsModule,
+    CustomFormsModule,
+    AngularMaterialModule,
     ProductCardComponent,
     ProductQuantityComponent
-  ],
+  ]
 })
 export class SharedModule { }

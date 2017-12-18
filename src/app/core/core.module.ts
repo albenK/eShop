@@ -4,11 +4,12 @@ import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProductsComponent } from '../shopping/components/products/products.component';
 
-import { AngularMaterialModule } from 'shared/angular-material/angular-material.module';
+import { SharedModule } from 'shared/shared.module';
 
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+
 
 /* 
   ABOUT ME: The purpose of this module is to hold the core components of this app.
@@ -17,9 +18,8 @@ import { NgModule } from '@angular/core';
 */
 @NgModule({
   imports: [
-    CommonModule,
     RouterModule.forChild([]),
-    AngularMaterialModule
+    SharedModule
   ],
   declarations: [
     AppToolbarComponent,

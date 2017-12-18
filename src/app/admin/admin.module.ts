@@ -44,10 +44,7 @@ const ADMIN_ROUTES:Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
     SharedModule,
-    AngularMaterialModule,
     RouterModule.forChild(ADMIN_ROUTES)
   ],
   declarations: [

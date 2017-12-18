@@ -34,10 +34,7 @@ const SHOPPING_ROUTES:Routes = [
 */
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
     SharedModule,
-    AngularMaterialModule,
     RouterModule.forChild(SHOPPING_ROUTES)
   ],
   declarations: [
