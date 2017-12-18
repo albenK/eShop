@@ -4,8 +4,8 @@ import {AppUser} from "../models/app-user";
 import { Injectable } from '@angular/core';
 
 /* 
-  ABOUT ME: The purpose of this class is to provide us with certain functionalities
-  that a user can perform. We inject this into the constructor of a component.
+  ABOUT ME: The purpose of this class is to provide us with some data about
+  the authenticated user. We inject this into the constructor of a component.
 */
 @Injectable()
 export class UserService {
@@ -16,7 +16,7 @@ export class UserService {
 
   //we call this when the user successfully logs in.
   updateUserInfoInDatabase(user:firebase.User){
-    let userInfo:Object = {name:user.displayName,email:user.email};
+    let userInfo:Object = {name:user.displayName,email:user.email,profilePicURL:user.photoURL};
     this.angularFireDatabase.object(this.userCollection+"/"+user.uid).update(userInfo);
   }
 

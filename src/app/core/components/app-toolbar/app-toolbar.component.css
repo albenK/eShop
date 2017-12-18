@@ -18,3 +18,11 @@
     font-size: 20px;
     text-align: center;
 }
+
+.profilePicButton {
+    cursor: pointer;
+    width:40px;
+    height:40px;
+    border-radius:100%;
+    background-size:cover; /* this css displays the thumbnail image properly*/
+}

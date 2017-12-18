@@ -21,15 +21,22 @@
     <button (click)="logout()" md-menu-item>Log Out</button>
   </md-menu>
 
-  <ng-template #anonymousUser>
+  <ng-container *ngIf="!appUser; else userSignedIn">
     <button routerLink="/login" md-button class="appToolbarButton">Login</button>
-  </ng-template>
-  
-  
-  
-  <div *ngIf="appUser; else anonymousUser">{{appUser.name}}</div>
+    <button [mdMenuTriggerFor]="dropDownMenu" md-icon-button>
+      <i class="material-icons">account_circle</i>
+    </button>
+  </ng-container>
 
-  <button [mdMenuTriggerFor]="dropDownMenu" md-icon-button>
-    <i class="material-icons">arrow_drop_down_circle</i>
-  </button>
+  <ng-template #userSignedIn>
+    <input
+      type="image"
+      [mdMenuTriggerFor]="dropDownMenu"
+      md-icon-button
+      [src]="appUser.profilePicURL"
+      class="profilePicButton"
+    />
+  </ng-template>
+
+ 
 </md-toolbar>
