@@ -14,8 +14,8 @@ import { CommonModule } from '@angular/common';
 
 /* 
   ABOUT ME: The purpose of this module is to hold shared components
-  and services so that we can import this module into AppModule.
-  Helps with modularizing the app.
+  and shared services so that we can import this module into other modules
+  that need these components and services. Helps with modularizing the app.
 */
 @NgModule({
   imports: [

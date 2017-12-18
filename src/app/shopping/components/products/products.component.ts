@@ -1,11 +1,10 @@
-import { ProductService } from "../shared/services/product.service";
-import { ShoppingCartService } from "../shared/services/shopping-cart.service";
-import { Product } from "../shared/models/product";
+import { ProductService } from "shared/services/product.service";
+import { ShoppingCartService } from "shared/services/shopping-cart.service";
+import { Product } from "shared/models/product";
 import { Subscription } from "rxjs/Subscription";
 import { FilterEvent } from "./models/filter-event";
-import { ShoppingCart } from "../shared/models/shopping-cart";
+import { ShoppingCart } from "shared/models/shopping-cart";
 import { Component, OnInit,OnDestroy } from '@angular/core';
-
 
 
 @Component({

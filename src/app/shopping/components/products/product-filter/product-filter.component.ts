@@ -1,5 +1,5 @@
 import { Observable } from "rxjs/Observable";
-import { CategoryService } from "../../shared/services/category.service";
+import { CategoryService } from "shared/services/category.service";
 import { FilterEvent } from "../models/filter-event";
 import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 

@@ -36,8 +36,8 @@ const ADMIN_ROUTES:Routes = [
   }
 ];
 /* 
-  ABOUT ME: The purpose of this module is to hold admin based components
-  and admin based services. We can import this module into AppModule.
+  ABOUT ME: The purpose of this module is to hold admin related components
+  and admin related services. We can import this module into AppModule.
   Helps with modularizing the app.
 */
 
@@ -51,7 +51,7 @@ const ADMIN_ROUTES:Routes = [
   declarations: [
     AdminProductsComponent,
     AdminOrdersComponent,
-    ProductFormComponent,
+    ProductFormComponent
   ],
   providers:[
     AdminAuthGuardService
