@@ -23,7 +23,6 @@ export class AppToolbarComponent implements OnInit,OnDestroy {
     this.shoppingCart$ = await this.shoppingCartService.getShoppingCartFromDatabase();
     this.appUserSubscription = this.authService.getAppUser$().subscribe((user:AppUser) => {
       this.appUser = user;
-      console.log(this.appUser);
     });
   }
 
