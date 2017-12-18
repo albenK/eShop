@@ -5,13 +5,15 @@ import { CustomFormsModule } from 'ng2-validation';
 
 import { environment } from '../environments/environment.prod';
 
-import { AppToolbarComponent } from './app-toolbar/app-toolbar.component';
+import { AppToolbarComponent } from './core/components/app-toolbar/app-toolbar.component';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomeComponent } from './core/components/home/home.component';
+import { LoginComponent } from './core/components/login/login.component';
+import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
 import { ProductsComponent } from './shopping/components/products/products.component';
 
+import { AngularMaterialModule } from 'shared/angular-material/angular-material.module';
+import { AppCoreModule } from './core/core.module';
 import { SharedModule } from 'shared/shared.module';
 import { AdminModule } from './admin/admin.module';
 import { ShoppingModule } from './shopping/shopping.module';
@@ -23,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 
 
+
 const APP_ROUTES:Routes = [
   {path:"",component:ProductsComponent},
   {path:"login",component:LoginComponent},
@@ -31,16 +34,9 @@ const APP_ROUTES:Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AppToolbarComponent,
-    HomeComponent,
-    LoginComponent,
-    PageNotFoundComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    SharedModule,
     BrowserAnimationsModule,
     FormsModule,
     CustomFormsModule,
@@ -48,6 +44,9 @@ const APP_ROUTES:Routes = [
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     RouterModule.forRoot(APP_ROUTES),
+    AngularMaterialModule,
+    AppCoreModule,
+    SharedModule,
     AdminModule,
     ShoppingModule
   ],

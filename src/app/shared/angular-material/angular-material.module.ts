@@ -12,8 +12,8 @@ import {MdChipsModule} from '@angular/material';
 
 import { NgModule } from '@angular/core';
 /*
-    ABOUT ME: the purpose of this module is to have one module that we import into 
-    app.module.ts for all of our angular material modules we use throughout this app.
+    ABOUT ME: The purpose of this module is to have one module that we import into 
+    all other modules for all of our angular material modules we use throughout this app.
 */
 @NgModule({
     imports: [

@@ -7,12 +7,12 @@
 
   <!-- Shopping cart badge-->
   <md-chip *ngIf="shoppingCart$ | async as shoppingCart" 
-    selected="true" color="accent" class="shoppingCartBadge">{{shoppingCart.getTotalNumberOfItems()}}
-  </md-chip>
+    selected="true" color="accent" class="shoppingCartBadge"
+  >{{shoppingCart.getTotalNumberOfItems()}}</md-chip>
 
   <span class="someSpace"></span>
   
-  <md-menu #dropDownMenu> <!-- TODO: use ngFor to display links once routing is set up-->
+  <md-menu #dropDownMenu>
     <button routerLink="/my/orders" md-menu-item>My Orders</button>
     <ng-container *ngIf="appUser && appUser.isAdmin">
       <button routerLink="/admin/orders" md-menu-item>Manage Orders</button>

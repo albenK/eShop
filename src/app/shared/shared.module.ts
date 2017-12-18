@@ -37,8 +37,7 @@ import { CommonModule } from '@angular/common';
   ],
   exports:[
     ProductCardComponent,
-    ProductQuantityComponent,
-    AngularMaterialModule
+    ProductQuantityComponent
   ],
 })
 export class SharedModule { }

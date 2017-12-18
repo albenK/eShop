@@ -3,9 +3,10 @@ import { AdminOrdersComponent } from './components/admin-orders/admin-orders.com
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { AuthGuardService } from 'shared/services/auth-guard.service';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
-import { AngularMaterialModule } from 'shared/angular-material/angular-material.module';
+
 
 import { SharedModule } from 'shared/shared.module';
+import { AngularMaterialModule } from 'shared/angular-material/angular-material.module';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -46,6 +47,7 @@ const ADMIN_ROUTES:Routes = [
     CommonModule,
     FormsModule,
     SharedModule,
+    AngularMaterialModule,
     RouterModule.forChild(ADMIN_ROUTES)
   ],
   declarations: [

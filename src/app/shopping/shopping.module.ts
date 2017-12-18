@@ -8,6 +8,7 @@ import { ShoppingCartSummaryComponent } from './components/shopping-cart-summary
 import { ShippingFormComponent } from './components/shipping-form/shipping-form.component';
 
 import { SharedModule } from 'shared/shared.module';
+import { AngularMaterialModule } from 'shared/angular-material/angular-material.module';
 
 import { AuthGuardService } from 'shared/services/auth-guard.service';
 
@@ -15,6 +16,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+
 
 
 
@@ -35,6 +37,7 @@ const SHOPPING_ROUTES:Routes = [
     CommonModule,
     FormsModule,
     SharedModule,
+    AngularMaterialModule,
     RouterModule.forChild(SHOPPING_ROUTES)
   ],
   declarations: [

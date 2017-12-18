@@ -22,7 +22,10 @@ export class ShippingFormComponent implements OnInit,OnDestroy {
   private authService:AuthService) { }
 
   ngOnInit() {
-    this.userIdSubscription =  this.authService.user$.subscribe(firebaseUser => this.userId = firebaseUser.uid);
+    this.userIdSubscription =  this.authService.user$
+      .subscribe((firebaseUser) => {
+        this.userId = (firebaseUser) ? (firebaseUser.uid):("");
+      });
   }
 
   ngOnDestroy() {
