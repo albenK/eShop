@@ -1,6 +1,6 @@
 <h1>Shopping Cart</h1>
 
-<ng-container *ngIf="shoppingCart$ |async as shoppingCart">
+<ng-container *ngIf="shoppingCart$ | async as shoppingCart">
     <p>
         You have {{shoppingCart.getTotalNumberOfItems()}} items in your shopping cart.
         <button *ngIf="shoppingCart.items.length > 0" 
@@ -9,7 +9,7 @@
         >Clear Shopping Cart</button>
     </p>
     
-    <div class="tableWrapper mat-elevation-z8">
+    <div *ngIf="shoppingCart.items.length > 0" class="tableWrapper mat-elevation-z8">
         <!-- mdSort directive is here just to apply some css, no sorting!-->
         <table mdSort>
             <thead>

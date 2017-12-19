@@ -1,6 +1,6 @@
 <h1>My Orders</h1>
 
-<div class="tableWrapper mat-elevation-z8">
+<div *ngIf="orders.length > 0; else noOrdersToDisplay" class="tableWrapper mat-elevation-z8">
     <!-- mdSort directive is here just to apply some css, no sorting!-->
     <table mdSort>
         <thead>
@@ -12,7 +12,7 @@
         </thead>
 
         <tbody>
-            <tr *ngFor="let eachOrder of orders$ | async">
+            <tr *ngFor="let eachOrder of orders">
                 <td>{{eachOrder.shippingForm.fullName}}</td>
                 <td>{{eachOrder.datePlaced | date:"mediumDate"}}</td>
                 <td><a md-button color="accent">View</a></td>
@@ -20,3 +20,7 @@
         </tbody>
     </table>
 </div>
+
+<ng-template #noOrdersToDisplay>
+    <p>You have not placed any orders yet.</p>
+</ng-template>

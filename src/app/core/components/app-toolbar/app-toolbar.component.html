@@ -18,24 +18,23 @@
       <button routerLink="/admin/orders" md-menu-item>Manage Orders</button>
       <button routerLink="/admin/products" md-menu-item>Manage Products</button>
     </ng-container>
-    <button (click)="logout()" md-menu-item>Log Out</button>
+    <button (click)="changeAuthState()" md-menu-item>{{authStatusDisplay}}</button>
   </md-menu>
 
-  <ng-container *ngIf="!appUser; else userSignedIn">
-    <button routerLink="/login" md-button class="appToolbarButton">Login</button>
-    <button [mdMenuTriggerFor]="dropDownMenu" md-icon-button>
-      <i class="material-icons">account_circle</i>
-    </button>
-  </ng-container>
-
-  <ng-template #userSignedIn>
-    <input
+  <ng-container *ngIf="appUser; else userNotSignedIn">
+      <input
       type="image"
       [mdMenuTriggerFor]="dropDownMenu"
       md-icon-button
       [src]="appUser.profilePicURL"
       class="profilePicButton"
     />
+  </ng-container>
+
+  <ng-template #userNotSignedIn>
+    <button [mdMenuTriggerFor]="dropDownMenu" md-icon-button>
+      <i class="material-icons">account_circle</i>
+    </button>
   </ng-template>
 
  
