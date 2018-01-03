@@ -61,5 +61,10 @@
   </div>
 
   <!-- Product Preview -->
-  <product-card *ngIf="product.title" class="groupItems" [product]="product" [showActionButtons]="false"></product-card>
+  <app-product-card 
+    *ngIf="product.title" 
+    class="groupItems" 
+    [product]="product" 
+    [showActionButtons]="false">
+  </app-product-card>
 </div>

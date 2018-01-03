@@ -14,7 +14,7 @@ import { Component, OnInit,ViewChild} from '@angular/core';
 */
 
 @Component({
-  selector: 'product-form',
+  selector: 'app-product-form',
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css']
 })

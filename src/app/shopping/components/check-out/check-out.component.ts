@@ -5,7 +5,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 
 @Component({
-  selector: 'check-out',
+  selector: 'app-check-out',
   templateUrl: './check-out.component.html',
   styleUrls: ['./check-out.component.css']
 })

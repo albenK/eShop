@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 
 @Component({
-  selector: 'product-quantity',
+  selector: 'app-product-quantity',
   templateUrl: './product-quantity.component.html',
   styleUrls: ['./product-quantity.component.css']
 })

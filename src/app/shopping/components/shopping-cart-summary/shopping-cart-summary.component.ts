@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 
 @Component({
-  selector: 'shopping-cart-summary',
+  selector: 'app-shopping-cart-summary',
   templateUrl: './shopping-cart-summary.component.html',
   styleUrls: ['./shopping-cart-summary.component.css']
 })

@@ -28,10 +28,10 @@
                     </td>
                     <td>{{eachItem.title}}</td>
                     <td>
-                        <product-quantity
+                        <app-product-quantity
                             [product]="eachItem"
                             [shoppingCart]="shoppingCart">
-                        </product-quantity>
+                        </app-product-quantity>
                     </td>
                     <td>{{eachItem.getTotalPrice() | currency:"USD":true}}</td>
                 </tr>

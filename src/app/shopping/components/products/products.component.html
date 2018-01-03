@@ -3,15 +3,15 @@
 
 <!-- Container for product filtering and displaying products-->
 <ng-template #mainContent>
-    <product-filter (categoryChange)="filterProducts($event)"></product-filter>
+    <app-product-filter (categoryChange)="filterProducts($event)"></app-product-filter>
     
     <!-- Display Products-->
     <ng-container *ngFor="let eachProduct of filteredProducts">
-        <product-card
+        <app-product-card
             [product]="eachProduct" 
             [showActionButtons]="true"
             [shoppingCart]="shoppingCart">
-        </product-card>
+        </app-product-card>
     </ng-container>
 </ng-template>
 

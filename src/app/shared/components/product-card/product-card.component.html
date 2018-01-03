@@ -1,4 +1,7 @@
-<md-card class="productCard mat-elevation-z8">
+<md-card [ngClass]="{'mat-elevation-z10':isHoveredOverCard}" 
+    (mouseover)="isHoveredOverCard = true" 
+    (mouseout)="isHoveredOverCard = false" 
+    class="productCard">
     <img md-card-image [src]="product.imageUrl" alt="Image goes here" class="productImage"/>
     <md-card-content>
         <h4>{{product.title}}</h4>
@@ -11,10 +14,10 @@
                 class="addToCartButton"
             >Add to Cart</button>
             <ng-template #updateQuantity>
-                <product-quantity
+                <app-product-quantity
                     [product]="product"
                     [shoppingCart]="shoppingCart">
-                </product-quantity>
+                </app-product-quantity>
             </ng-template>
         </md-card-actions>
     </md-card-content>

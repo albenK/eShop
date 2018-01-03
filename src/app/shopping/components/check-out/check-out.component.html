@@ -1,12 +1,12 @@
 <ng-container *ngIf="shoppingCart && shoppingCart.items.length > 0; else noItemsToDisplay">
      <!-- Order Summary-->
     <div class="groupItems">
-        <shopping-cart-summary [shoppingCart]="shoppingCart"></shopping-cart-summary>
+        <app-shopping-cart-summary [shoppingCart]="shoppingCart"></app-shopping-cart-summary>
     </div>
 
     <!-- Shipping Form-->
     <div class="groupItems">
-        <shipping-form [shoppingCart]="shoppingCart"></shipping-form>            
+        <app-shipping-form [shoppingCart]="shoppingCart"></app-shipping-form>            
     </div>
 
 </ng-container>

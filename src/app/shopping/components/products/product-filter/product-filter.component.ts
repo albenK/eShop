@@ -5,7 +5,7 @@ import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 
 
 @Component({
-  selector: 'product-filter',
+  selector: 'app-product-filter',
   templateUrl: './product-filter.component.html',
   styleUrls: ['./product-filter.component.css']
 })

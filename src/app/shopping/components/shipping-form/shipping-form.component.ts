@@ -9,7 +9,7 @@ import { Component, OnInit, OnDestroy,Input } from '@angular/core';
 
 
 @Component({
-  selector: 'shipping-form',
+  selector: 'app-shipping-form',
   templateUrl: './shipping-form.component.html',
   styleUrls: ['./shipping-form.component.css']
 })
